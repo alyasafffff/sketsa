@@ -39,7 +39,7 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: var(--font-body);
-            background-color: var(--color-bg-alt); /* Latar belakang blush */
+            background-color: var(--color-bg-alt);
             color: var(--color-text-dark);
             line-height: 1.7;
             overflow-x: hidden;
@@ -58,7 +58,7 @@
         a:hover { color: var(--color-accent-gold-hover); }
         .container { max-width: 1140px; margin: 0 auto; padding: 4rem 2rem; }
         
-        /* --- Tombol CTA (Konsisten) --- */
+        /* --- Tombol CTA --- */
         .btn {
             display: inline-block;
             padding: 0.8rem 2.2rem;
@@ -94,7 +94,7 @@
             color: #fff;
         }
 
-        /* --- 1. Header / Navbar (Konsisten) --- */
+        /* --- Header / Navbar --- */
         #main-header {
             position: sticky;
             top: 0;
@@ -143,7 +143,7 @@
         /* --- Layout Halaman Builder --- */
         .builder-layout {
             display: grid;
-            grid-template-columns: 1fr 1.5fr; /* Kolom kiri visual, kolom kanan kontrol */
+            grid-template-columns: 1fr 1.5fr;
             gap: 3rem;
             align-items: flex-start;
         }
@@ -151,7 +151,7 @@
         /* Kolom Kiri (Visual & Info) */
         .builder-visual {
             position: sticky;
-            top: 100px; /* header-height + padding */
+            top: 100px;
             background: var(--color-bg-light);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-subtle);
@@ -166,18 +166,16 @@
             margin: 1rem auto 2rem auto;
             background: #fdfdfd;
             display: flex;
-            flex-direction: column-reverse; /* Layer menumpuk dari bawah */
+            flex-direction: column-reverse;
             overflow: hidden;
         }
         .bottle-layer {
             width: 100%;
-            height: 0; /* Diatur oleh JS */
+            height: 0;
             transition: height 0.5s ease, background-color 0.5s ease;
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+        .form-group { margin-bottom: 1.5rem; }
         .form-group label {
             display: block;
             margin-bottom: 0.75rem;
@@ -201,10 +199,7 @@
             outline: none;
             border-color: var(--color-accent-gold);
         }
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
+        .form-group textarea { min-height: 80px; resize: vertical; }
         
         .radio-option-group {
             display: grid;
@@ -212,7 +207,6 @@
             gap: 0.5rem;
         }
         
-        /* [BARU] Grid untuk 4 opsi ketahanan */
         .radio-option-group-ketahanan {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -228,12 +222,8 @@
             transition: all 0.3s ease;
             text-align: center;
         }
-        .radio-option:hover {
-            border-color: var(--color-accent-gold-hover);
-        }
-        .radio-option input {
-            display: none; 
-        }
+        .radio-option:hover { border-color: var(--color-accent-gold-hover); }
+        .radio-option input { display: none; }
         .radio-option:has(input:checked) {
             border-color: var(--color-accent-gold);
             background-color: var(--color-bg-alt);
@@ -293,9 +283,7 @@
             border: none;
             padding: 0;
         }
-        .btn-remove-aroma:hover {
-            text-decoration: underline;
-        }
+        .btn-remove-aroma:hover { text-decoration: underline; }
 
         .aroma-slider-group {
             display: flex;
@@ -312,16 +300,7 @@
             outline: none;
             border-radius: 5px;
         }
-        .aroma-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--color-accent-gold);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+        .aroma-slider::-webkit-slider-thumb,
         .aroma-slider::-moz-range-thumb {
             width: 20px;
             height: 20px;
@@ -331,7 +310,6 @@
             transition: background-color 0.3s ease;
         }
         .aroma-slider:hover::-webkit-slider-thumb { background: var(--color-accent-gold-hover); }
-        .aroma-slider:hover::-moz-range-thumb { background: var(--color-accent-gold-hover); }
 
         .aroma-value-display {
             display: flex;
@@ -389,9 +367,7 @@
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
-        #total-percent-text {
-            color: var(--color-danger); /* Awalnya merah */
-        }
+        #total-percent-text { color: var(--color-danger); }
         .total-bar {
             width: 100%;
             height: 12px;
@@ -400,7 +376,7 @@
             overflow: hidden;
         }
         #total-progress-bar {
-            width: 0%; /* Diatur JS */
+            width: 0%;
             height: 100%;
             background-color: var(--color-accent-gold);
             transition: width 0.4s ease;
@@ -410,16 +386,36 @@
             color: var(--color-danger);
             text-align: center;
             margin-top: 0.5rem;
-            display: block; /* Awalnya tampil */
+            display: block; 
         }
+
+        /* [BARU] Price Display Style */
+        .price-display {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-accent-gold);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+            text-align: right;
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .price-display span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent-gold-hover);
+        }
+
         .builder-actions {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
-        .builder-actions .btn {
-            flex: 1; /* Tombol jadi sama rata */
-        }
+        .builder-actions .btn { flex: 1; }
         .builder-actions .btn:disabled {
             background-color: #ccc;
             border-color: #ccc;
@@ -427,7 +423,7 @@
             transform: none;
         }
 
-        /* --- 3. Modal Pop-up Katalog --- */
+        /* --- Modal Pop-up Katalog --- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -435,7 +431,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6); 
-            display: none; /* Sembunyi by default */
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 2000;
@@ -445,7 +441,7 @@
             background-color: var(--color-bg-light);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-hover);
-            max-width: 800px; /* Modal lebih besar */
+            max-width: 800px;
             width: 100%;
             height: 90vh;
             display: flex;
@@ -473,13 +469,11 @@
             line-height: 1;
             font-weight: 300;
         }
-        .modal-close-btn:hover {
-            color: var(--color-text-dark);
-        }
+        .modal-close-btn:hover { color: var(--color-text-dark); }
         
         .modal-body {
             padding: 1.5rem 2rem;
-            overflow-y: auto; /* Kunci agar bisa scroll */
+            overflow-y: auto;
             flex-grow: 1;
         }
         .aroma-picker-grid {
@@ -512,7 +506,7 @@
             color: var(--color-text-light);
         }
         
-        /* --- Footer (Konsisten) --- */
+        /* --- Footer --- */
         footer {
             background-color: var(--color-footer-bg);
             color: #ccc;
@@ -537,35 +531,20 @@
         .footer-links a:hover { color: #fff; }
         .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #333; font-size: 0.9rem; color: #777; max-width: 1140px; margin: 0 auto; }
         
-        /* --- Responsif --- */
         @media (max-width: 992px) {
-            .builder-layout {
-                grid-template-columns: 1fr; /* Stack di tablet */
-            }
-            .builder-visual {
-                position: static; 
-                top: auto;
-            }
-            .footer-container { 
-                grid-template-columns: 1fr 1fr; 
-            }
+            .builder-layout { grid-template-columns: 1fr; }
+            .builder-visual { position: static; top: auto; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
             .footer-container { grid-template-columns: 1fr; }
             .aroma-slider-group { flex-wrap: wrap; }
             .aroma-slider { width: 100%; flex-grow: 0; margin-bottom: 0.5rem; }
             .modal-content { height: 80vh; padding: 1.5rem; }
-            .modal-header { padding: 1rem 1.5rem; }
-            .modal-body { padding: 1rem; }
         }
         @media (max-width: 480px) {
-            .radio-option-group {
-                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-            }
-            /* [BARU] Grid ketahanan di mobile */
-            .radio-option-group-ketahanan {
-                grid-template-columns: 1fr 1fr;
-            }
+            .radio-option-group { grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); }
+            .radio-option-group-ketahanan { grid-template-columns: 1fr 1fr; }
         }
 
     </style>
@@ -589,68 +568,32 @@
     </header>
 
     <main>
-        
         <section class="container">
-            
             <div class="builder-layout">
                 
                 <aside class="builder-visual">
-                    <div class="bottle-visual" id="bottle-visual">
-                        </div>
+                    <div class="bottle-visual" id="bottle-visual"></div>
                     
                     <div class="form-group">
                         <label>Pilih Ukuran Botol</label>
                         <div class="radio-option-group">
-                            <label class="radio-option">
-                                <input type="radio" name="bottle-size" value="5">
-                                <strong>5 ml</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="bottle-size" value="8">
-                                <strong>8 ml</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="bottle-size" value="13">
-                                <strong>13 ml</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="bottle-size" value="15">
-                                <strong>15 ml</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="bottle-size" value="30">
-                                <strong>30 ml</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="bottle-size" value="60">
-                                <strong>60 ml</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="bottle-size" value="100" checked> 
-                                <strong>100 ml</strong>
-                            </label>
+                            <label class="radio-option"><input type="radio" name="bottle-size" value="5"><strong>5 ml</strong></label>
+                            <label class="radio-option"><input type="radio" name="bottle-size" value="8"><strong>8 ml</strong></label>
+                            <label class="radio-option"><input type="radio" name="bottle-size" value="13"><strong>13 ml</strong></label>
+                            <label class="radio-option"><input type="radio" name="bottle-size" value="15"><strong>15 ml</strong></label>
+                            <label class="radio-option"><input type="radio" name="bottle-size" value="30"><strong>30 ml</strong></label>
+                            <label class="radio-option"><input type="radio" name="bottle-size" value="60"><strong>60 ml</strong></label>
+                            <label class="radio-option"><input type="radio" name="bottle-size" value="100" checked><strong>100 ml</strong></label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Pilih Ketahanan Aroma (Konsentrat)</label>
                         <div class="radio-option-group-ketahanan">
-                            <label class="radio-option">
-                                <input type="radio" name="ketahanan" value="3" checked>
-                                <strong>3 Jam</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="ketahanan" value="8">
-                                <strong>8 Jam</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="ketahanan" value="12">
-                                <strong>12 Jam</strong>
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="ketahanan" value="24">
-                                <strong>24 Jam</strong>
-                            </label>
+                            <label class="radio-option"><input type="radio" name="ketahanan" value="3" checked><strong>3 Jam</strong></label>
+                            <label class="radio-option"><input type="radio" name="ketahanan" value="8"><strong>8 Jam</strong></label>
+                            <label class="radio-option"><input type="radio" name="ketahanan" value="12"><strong>12 Jam</strong></label>
+                            <label class="radio-option"><input type="radio" name="ketahanan" value="24"><strong>24 Jam</strong></label>
                         </div>
                     </div>
                     
@@ -667,8 +610,7 @@
                 <div class="builder-controls">
                     <h2>Studio Racik</h2>
                     
-                    <div id="aroma-slots-container">
-                        </div>
+                    <div id="aroma-slots-container"></div>
 
                     <button id="add-aroma-btn">+ Tambah Aroma</button>
                     
@@ -683,6 +625,10 @@
                         <p id="total-warning" style="display: block;">Total racikan harus 100% untuk menyimpan.</p>
                     </div>
 
+                    <div class="price-display">
+                        Estimasi Harga: <span id="total-price">Rp 0</span>
+                    </div>
+
                     <div class="builder-actions">
                         <button id="save-recipe-btn" class="btn btn-secondary" disabled>Simpan ke Resepku</button>
                         <button id="order-recipe-btn" class="btn btn-primary" disabled>Pesan Sekarang</button>
@@ -691,7 +637,6 @@
 
             </div>
         </section>
-
     </main>
 
     <div class="modal-overlay" id="aroma-picker-modal">
@@ -702,59 +647,22 @@
             </div>
             <div class="modal-body">
                 <div class="aroma-picker-grid">
-                    <div class="aroma-choice" data-name="Vanilla Sky" data-color="#fff2cc">
-                        <h4>Vanilla Sky</h4>
-                        <p>Base Note - Gourmand</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Rose Petal" data-color="#f7cac9">
-                        <h4>Rose Petal</h4>
-                        <p>Middle Note - Floral</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Citrus Bloom" data-color="#f7f7a1">
-                        <h4>Citrus Bloom</h4>
-                        <p>Top Note - Fresh</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Deep Sandalwood" data-color="#e6cba8">
-                        <h4>Deep Sandalwood</h4>
-                        <p>Base Note - Woody</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Soft Musk" data-color="#f5f5f5">
-                        <h4>Soft Musk</h4>
-                        <p>Base Note - Oriental</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Jasmine Tea" data-color="#c5e0dc">
-                        <h4>Jasmine Tea</h4>
-                        <p>Middle Note - Floral/Green</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Amber Glow" data-color="#f7b78a">
-                        <h4>Amber Glow</h4>
-                        <p>Base Note - Oriental</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Fresh Laundry" data-color="#e0eef5">
-                        <h4>Fresh Laundry</h4>
-                        <p>Top Note - Fresh</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Ocean Breeze" data-color="#b3e0e2">
-                        <h4>Ocean Breeze</h4>
-                        <p>Top Note - Fresh/Aquatic</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Spicy Bergamot" data-color="#d4e2b3">
-                        <h4>Spicy Bergamot</h4>
-                        <p>Top Note - Fresh/Spicy</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Sweet Caramel" data-color="#e0b898">
-                        <h4>Sweet Caramel</h4>
-                        <p>Base Note - Gourmand</p>
-                    </div>
-                    <div class="aroma-choice" data-name="Patchouli Earth" data-color="#d4a5a5">
-                        <h4>Patchouli Earth</h4>
-                        <p>Base Note - Woody/Earthy</p>
-                    </div>
+                    <div class="aroma-choice" data-name="Vanilla Sky" data-color="#fff2cc"><h4>Vanilla Sky</h4><p>Base Note - Gourmand</p></div>
+                    <div class="aroma-choice" data-name="Rose Petal" data-color="#f7cac9"><h4>Rose Petal</h4><p>Middle Note - Floral</p></div>
+                    <div class="aroma-choice" data-name="Citrus Bloom" data-color="#f7f7a1"><h4>Citrus Bloom</h4><p>Top Note - Fresh</p></div>
+                    <div class="aroma-choice" data-name="Deep Sandalwood" data-color="#e6cba8"><h4>Deep Sandalwood</h4><p>Base Note - Woody</p></div>
+                    <div class="aroma-choice" data-name="Soft Musk" data-color="#f5f5f5"><h4>Soft Musk</h4><p>Base Note - Oriental</p></div>
+                    <div class="aroma-choice" data-name="Jasmine Tea" data-color="#c5e0dc"><h4>Jasmine Tea</h4><p>Middle Note - Floral/Green</p></div>
+                    <div class="aroma-choice" data-name="Amber Glow" data-color="#f7b78a"><h4>Amber Glow</h4><p>Base Note - Oriental</p></div>
+                    <div class="aroma-choice" data-name="Fresh Laundry" data-color="#e0eef5"><h4>Fresh Laundry</h4><p>Top Note - Fresh</p></div>
+                    <div class="aroma-choice" data-name="Ocean Breeze" data-color="#b3e0e2"><h4>Ocean Breeze</h4><p>Top Note - Fresh/Aquatic</p></div>
+                    <div class="aroma-choice" data-name="Spicy Bergamot" data-color="#d4e2b3"><h4>Spicy Bergamot</h4><p>Top Note - Fresh/Spicy</p></div>
+                    <div class="aroma-choice" data-name="Sweet Caramel" data-color="#e0b898"><h4>Sweet Caramel</h4><p>Base Note - Gourmand</p></div>
+                    <div class="aroma-choice" data-name="Patchouli Earth" data-color="#d4a5a5"><h4>Patchouli Earth</h4><p>Base Note - Woody/Earthy</p></div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <footer>
         <div class="footer-container">
@@ -762,16 +670,14 @@
                 <div class="footer-logo">MixScent</div>
                 <p>Create Your Own Fragrance. <br> Racik, miliki, dan ekspresikan dirimu.</p>
                 <div class="social-icons">
-                    <a href="#" title="Instagram">I</a> 
-                    <a href="#" title="TikTok">T</a>
-                    <a href="#" title="Twitter/X">X</a>
+                    <a href="#" title="Instagram">I</a> <a href="#" title="TikTok">T</a> <a href="#" title="Twitter/X">X</a>
                 </div>
             </div>
             <div class="footer-links">
                 <h4>MixScent</h4>
                 <ul>
                     <li><a href="tentangkami.html">Tentang</a></li>
-                    <li><a href="parfum.html">Katalog Aroma</a></li>
+                    <li><a href="buatparfum.html">Katalog Aroma</a></li>
                     <li><a href="rekomendasi.html">Rekomendasi</a></li>
                 </ul>
             </div>
@@ -792,42 +698,48 @@
                 </ul>
             </div>
         </div>
-        <div class="copyright">
-            Copyright © 2025 MixScent. All rights reserved.
-        </div>
+        <div class="copyright">Copyright © 2025 MixScent. All rights reserved.</div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Elemen Kontrol
             const slotsContainer = document.getElementById('aroma-slots-container');
             const addAromaBtn = document.getElementById('add-aroma-btn');
-            
-            // Elemen Visual
             const bottleVisual = document.getElementById('bottle-visual');
-            
-            // Elemen Ukuran Botol
             const bottleSizeRadios = document.querySelectorAll('input[name="bottle-size"]');
-            
-            // Elemen Total Bar
+            const ketahananRadios = document.querySelectorAll('input[name="ketahanan"]'); // [BARU]
             const totalProgressBar = document.getElementById('total-progress-bar');
             const totalPercentText = document.getElementById('total-percent-text');
             const totalWarning = document.getElementById('total-warning');
-            
-            // Elemen Tombol Aksi
+            const totalPriceDisplay = document.getElementById('total-price'); // [BARU]
             const saveBtn = document.getElementById('save-recipe-btn');
             const orderBtn = document.getElementById('order-recipe-btn');
-            
-            // Elemen Modal
             const modal = document.getElementById('aroma-picker-modal');
             const modalCloseBtn = document.getElementById('modalCloseBtn');
             const aromaChoices = document.querySelectorAll('.aroma-choice');
             
             let slotIdCounter = 0;
 
-            // --- FUNGSI UTAMA ---
+            // [BARU] Data Harga (Logika Sederhana)
+            const BOTTLE_PRICES = {
+                5: 10000,
+                8: 15000,
+                13: 25000,
+                15: 30000,
+                30: 50000,
+                60: 80000,
+                100: 120000
+            };
+            
+            const ESSENCE_PRICE_PER_ML = 2000; // Harga bibit per ml
 
-            // 1. Membuka & Menutup Modal
+            const CONCENTRATION_PRICES = {
+                3: 0,      // Standar
+                8: 10000,  // Tambah awet
+                12: 20000, // Tahan lama
+                24: 30000  // Seharian
+            };
+
             function openAromaModal() { modal.style.display = 'flex'; }
             function closeAromaModal() { modal.style.display = 'none'; }
             
@@ -835,16 +747,18 @@
                 return parseInt(document.querySelector('input[name="bottle-size"]:checked').value, 10);
             }
 
-            // 2. Membuat Slot Aroma Baru
+            function getCurrentConcentrationCost() {
+                const val = parseInt(document.querySelector('input[name="ketahanan"]:checked').value, 10);
+                return CONCENTRATION_PRICES[val] || 0;
+            }
+
             function createAromaSlot(name, color) {
                 slotIdCounter++;
                 const slotId = `slot-${slotIdCounter}`;
-
                 const slotDiv = document.createElement('div');
                 slotDiv.className = 'aroma-slot';
                 slotDiv.id = slotId;
                 slotDiv.dataset.color = color; 
-
                 slotDiv.innerHTML = `
                     <div class="aroma-header">
                         <span class="aroma-name">${name}</span>
@@ -856,11 +770,8 @@
                             <input type="text" class="aroma-ml" value="0 ml" readonly>
                             <span class="aroma-percent">0%</span>
                         </div>
-                    </div>
-                `;
-                
+                    </div>`;
                 slotsContainer.appendChild(slotDiv);
-                
                 const bottleLayer = document.createElement('div');
                 bottleLayer.className = 'bottle-layer';
                 bottleLayer.id = `layer-${slotId}`;
@@ -868,22 +779,34 @@
                 bottleVisual.appendChild(bottleLayer);
             }
 
-            // 3. Menghapus Slot Aroma
             function removeAromaSlot(id) {
                 const slot = document.getElementById(id);
                 const layer = document.getElementById(`layer-${id}`);
-                
                 if (slot) slot.remove();
                 if (layer) layer.remove();
-                
-                updateValues(); // Update total setelah menghapus
+                updateValues(); 
             }
 
-            // 4. Fungsi Kalkulasi Utama (Update % dan ml)
+            // [BARU] Fungsi Kalkulasi Harga
+            function calculateTotal() {
+                const size = getCurrentBottleSize();
+                const concentrationCost = getCurrentConcentrationCost();
+                const bottleBasePrice = BOTTLE_PRICES[size] || 0;
+
+                // Harga Bibit = Ukuran botol * Harga per ml (Asumsi full essence)
+                // Atau: Jika ingin harga bibit berdasarkan % terisi, kalikan dengan (totalPercent/100)
+                // Sesuai prompt, kita pakai logika sederhana: Ukuran Botol * 2000
+                const essenceCost = size * ESSENCE_PRICE_PER_ML;
+
+                const total = bottleBasePrice + essenceCost + concentrationCost;
+                
+                // Format ke Rupiah
+                totalPriceDisplay.textContent = 'Rp ' + total.toLocaleString('id-ID');
+            }
+
             function updateValues(changedSlider = null) {
                 const allSliders = document.querySelectorAll('.aroma-slider');
                 let totalPercent = 0;
-                
                 const currentBottleSize = getCurrentBottleSize();
 
                 allSliders.forEach(slider => {
@@ -893,7 +816,6 @@
                 if (totalPercent > 100 && changedSlider) {
                     const excess = totalPercent - 100;
                     changedSlider.value = parseInt(changedSlider.value, 10) - excess;
-                    
                     updateValues();
                     return;
                 }
@@ -902,20 +824,16 @@
                 allSliders.forEach(slider => {
                     const value = parseInt(slider.value, 10);
                     finalTotal += value;
-                    
                     const slot = slider.closest('.aroma-slot');
                     const mlInput = slot.querySelector('.aroma-ml');
                     const percentSpan = slot.querySelector('.aroma-percent');
-                    
                     const mlValue = (value / 100) * currentBottleSize;
                     mlInput.value = mlValue.toLocaleString('id-ID', { maximumFractionDigits: 1 }) + ' ml'; 
                     percentSpan.textContent = value + '%';
-                    
                     const layer = document.getElementById(`layer-${slot.id}`);
                     if(layer) layer.style.height = value + '%';
                 });
 
-                // Update Total Bar
                 totalProgressBar.style.width = finalTotal + '%';
                 totalPercentText.textContent = `Total: ${finalTotal}% / 100%`;
 
@@ -932,44 +850,40 @@
                     saveBtn.disabled = true;
                     orderBtn.disabled = true;
                 }
-            }
 
+                // [BARU] Panggil hitung harga setiap kali ada perubahan
+                calculateTotal();
+                
+            }
+                
 
             // --- EVENT LISTENERS ---
-
-            // Buka Modal
             addAromaBtn.addEventListener('click', openAromaModal);
-            
-            // Tutup Modal
             modalCloseBtn.addEventListener('click', closeAromaModal);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeAromaModal();
-            });
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeAromaModal(); });
             
-            // Listener untuk perubahan ukuran botol
+            // Listener perubahan ukuran botol (juga update harga)
             bottleSizeRadios.forEach(radio => {
-                radio.addEventListener('change', () => {
-                    updateValues(); // Panggil updateValues untuk mengkalkulasi ulang semua ML
-                });
+                radio.addEventListener('change', () => { updateValues(); });
             });
 
-            // Memilih Aroma dari Modal
+            // [BARU] Listener perubahan ketahanan (update harga)
+            ketahananRadios.forEach(radio => {
+                radio.addEventListener('change', () => { calculateTotal(); });
+            });
+
             aromaChoices.forEach(choice => {
                 choice.addEventListener('click', () => {
                     const name = choice.dataset.name;
                     const color = choice.dataset.color;
-                    
                     createAromaSlot(name, color);
                     closeAromaModal();
-                    updateValues(); // Update setelah slot baru ditambahkan
+                    updateValues();
                 });
             });
             
-            // Event listener untuk slider dan hapus (Event Delegation)
             slotsContainer.addEventListener('input', function(e) {
-                if (e.target.classList.contains('aroma-slider')) {
-                    updateValues(e.target); // Kirim slider yg diubah
-                }
+                if (e.target.classList.contains('aroma-slider')) { updateValues(e.target); }
             });
             
             slotsContainer.addEventListener('click', function(e) {
@@ -979,7 +893,7 @@
                 }
             });
 
-            // Panggil sekali saat load (total = 0)
+            // Init
             updateValues();
         });
     </script>

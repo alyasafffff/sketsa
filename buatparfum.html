@@ -10,8 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 💡 Gaya Desain (Modern Rose Gold - Selaras) --- */
-        
+        /* --- 💡 Gaya Desain (Sama) --- */
         :root {
             --color-bg-light: #FFFFFF;
             --color-bg-alt: #FFFBF9;
@@ -21,16 +20,14 @@
             --color-accent-gold-hover: #C48F9E;
             --color-border: #F5EAEB;
             --color-footer-bg: #4A4A4A;
-
+            --color-danger: #d9534f; /* Tambahan untuk tombol Beli */
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Poppins', sans-serif;
             --font-ui: 'Montserrat', sans-serif;
-            
             --border-radius: 8px;
             --shadow-subtle: 0 5px 20px rgba(0, 0, 0, 0.05);
             --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
-            
-            --header-height: 70px; /* Perkiraan tinggi header */
+            --header-height: 70px;
         }
         
         /* --- Reset Dasar --- */
@@ -42,7 +39,11 @@
             color: var(--color-text-dark);
             line-height: 1.7;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+        main { flex-grow: 1; }
         h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; }
         h2 { font-size: 2.8rem; text-align: center; margin-bottom: 2.5rem; }
         h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
@@ -51,19 +52,21 @@
         a:hover { color: var(--color-accent-gold-hover); }
         .container { max-width: 1140px; margin: 0 auto; padding: 4rem 2rem; }
         
-        /* --- Tombol CTA (Konsisten) --- */
+        /* --- Tombol CTA --- */
         .btn {
             display: inline-block;
-            padding: 0.8rem 2.2rem;
+            padding: 0.8rem 1.5rem; /* Padding sedikit disesuaikan agar muat 3 tombol */
             border-radius: 50px;
             font-weight: 600;
             font-family: var(--font-ui);
             transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-align: center;
+            text-decoration: none;
         }
         .btn-primary {
             background-color: var(--color-accent-gold);
@@ -86,8 +89,19 @@
             color: #fff;
             transform: translateY(-2px);
         }
+        /* Tombol Beli Langsung (Lebih menonjol) */
+        .btn-buy {
+            background-color: var(--color-text-dark);
+            color: #fff;
+            border-color: var(--color-text-dark);
+        }
+        .btn-buy:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+            color: #fff;
+        }
 
-        /* --- 1. Header / Navbar (Konsisten) --- */
+        /* --- Header --- */
         #main-header {
             position: sticky;
             top: 0;
@@ -113,7 +127,7 @@
             color: var(--color-text-dark);
             font-weight: 700;
         }
-        #main-header nav { display: none; } /* Sembunyi di mobile */
+        #main-header nav { display: none; }
         #main-header nav ul { list-style: none; display: flex; align-items: center; }
         #main-header nav li { margin: 0 1.25rem; }
         #main-header nav a {
@@ -133,7 +147,7 @@
             #main-header nav { display: block; }
         }
 
-        /* --- 2. Filter Section (Sticky) --- */
+        /* --- Filter Section --- */
         #filter-bar {
             position: sticky;
             top: var(--header-height);
@@ -175,16 +189,13 @@
             .search-bar { width: 100%; }
         }
 
-        /* --- 3. Katalog Parfum (Gallery View) --- */
-        #parfum-katalog h2 {
-            margin-bottom: 2rem;
-        }
+        /* --- Katalog Parfum --- */
+        #parfum-katalog h2 { margin-bottom: 2rem; }
         .katalog-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
         }
-        
         .parfum-card {
             background-color: #fff;
             border: 1px solid var(--color-border);
@@ -206,26 +217,20 @@
             padding: 1.5rem;
             text-align: center;
         }
-        .parfum-card .parfum-info h3 {
-            font-size: 1.25rem;
-        }
+        .parfum-card .parfum-info h3 { font-size: 1.25rem; }
         .parfum-card .parfum-info p {
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
 
-        /* --- 4. Inspirasi Layering Section --- */
-        #inspirasi-section {
-            background-color: var(--color-bg-alt);
-        }
-        
+        /* --- Inspirasi Layering --- */
+        #inspirasi-section { background-color: var(--color-bg-alt); }
         .inspirasi-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* Sama seperti katalog */
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
             padding: 1rem 0 2rem 0;
         }
-        
         .creation-card {
             background-color: var(--color-bg-light);
             border-radius: var(--border-radius);
@@ -263,93 +268,64 @@
             font-size: 0.9rem;
             color: var(--color-text-light);
             margin-bottom: 1.5rem;
-            flex-grow: 1; /* Mendorong tombol ke bawah */
+            flex-grow: 1; 
         }
-        .creation-card .btn {
-            width: 100%; /* Tombol jadi full-width */
-        }
+        .creation-card .btn { width: 100%; }
         
-        /* --- 5. Gaya Modal Pop-up --- */
+        /* --- Modal Pop-up (Diperbarui) --- */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); 
-            display: none; /* Sembunyi by default */
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 1rem;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); display: none;
+            justify-content: center; align-items: center; z-index: 2000; padding: 1rem;
         }
         .modal-content {
-            background-color: var(--color-bg-light);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-hover);
-            max-width: 500px;
-            width: 100%;
-            padding: 2.5rem;
-            position: relative;
-            animation: modalFadeIn 0.3s ease-out;
+            background-color: var(--color-bg-light); border-radius: var(--border-radius);
+            box-shadow: var(--shadow-hover); max-width: 550px; width: 100%; padding: 2.5rem;
+            position: relative; animation: modalFadeIn 0.3s ease-out;
         }
         @keyframes modalFadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .modal-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 2.5rem;
-            color: var(--color-text-light);
-            cursor: pointer;
-            line-height: 1;
-            font-weight: 300;
+            position: absolute; top: 15px; right: 20px; font-size: 2.5rem;
+            color: var(--color-text-light); cursor: pointer; line-height: 1; font-weight: 300;
         }
-        .modal-close-btn:hover {
-            color: var(--color-text-dark);
-        }
+        .modal-close-btn:hover { color: var(--color-text-dark); }
         .modal-content h2 {
-            font-family: var(--font-heading);
-            font-size: 2.2rem;
-            text-align: left;
-            margin-bottom: 1rem;
-            color: var(--color-text-dark);
+            font-family: var(--font-heading); font-size: 2.2rem; text-align: left;
+            margin-bottom: 1rem; color: var(--color-text-dark);
         }
-        .modal-content p {
-            font-size: 1rem;
-            color: var(--color-text-light);
-            margin-bottom: 1.5rem;
-        }
+        .modal-content p { font-size: 1rem; color: var(--color-text-light); margin-bottom: 1.5rem; }
         .modal-details {
-            background-color: var(--color-bg-alt);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
+            background-color: var(--color-bg-alt); border: 1px solid var(--color-border);
+            border-radius: var(--border-radius); padding: 1rem 1.5rem; margin-bottom: 2rem;
         }
         .modal-details p {
-            margin-bottom: 0.5rem;
-            font-family: var(--font-ui);
-            color: var(--color-text-dark);
-            font-weight: 500;
+            margin-bottom: 0.5rem; font-family: var(--font-ui); color: var(--color-text-dark); font-weight: 500;
         }
         .modal-details p:last-child { margin-bottom: 0; }
         
-        /* --- Footer (Konsisten) --- */
-        footer {
-            background-color: var(--color-footer-bg);
-            color: #ccc;
-            padding: 5rem 2rem 2rem 2rem;
-        }
-        .footer-container {
+        /* Container Tombol Modal */
+        .modal-actions-group {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 2.5rem;
-            max-width: 1140px;
-            margin: 0 auto 3rem auto;
+            gap: 10px;
         }
+        .modal-actions-group .btn { width: 100%; margin: 0; }
+        
+        /* Grid tombol di modal (biar rapi) */
+        @media (min-width: 500px) {
+            .modal-actions-group {
+                grid-template-columns: 1fr 1fr; /* Racik & Keranjang sebelahan */
+            }
+            .modal-actions-group .btn-buy-now {
+                grid-column: 1 / -1; /* Tombol Beli Langsung full width di bawah */
+            }
+        }
+
+        /* --- Footer --- */
+        footer { background-color: var(--color-footer-bg); color: #ccc; padding: 5rem 2rem 2rem 2rem; }
+        .footer-container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; max-width: 1140px; margin: 0 auto 3rem auto; }
         .footer-logo { font-size: 1.8rem; font-family: var(--font-heading); color: #fff; margin-bottom: 1rem; }
         .footer-about p { color: #999; font-size: 0.9rem; margin-bottom: 1.5rem; }
         .social-icons a { color: #999; font-size: 1.5rem; margin-right: 1.5rem; }
@@ -361,7 +337,6 @@
         .footer-links a:hover { color: #fff; }
         .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #333; font-size: 0.9rem; color: #777; max-width: 1140px; margin: 0 auto; }
         
-        /* --- Responsif --- */
         @media (max-width: 992px) {
             .katalog-grid, .inspirasi-grid { grid-template-columns: repeat(3, 1fr); }
             .footer-container { grid-template-columns: 1fr 1fr; }
@@ -369,6 +344,8 @@
         @media (max-width: 768px) {
             .katalog-grid, .inspirasi-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-container { grid-template-columns: 1fr; }
+            .filter-container { flex-direction: column; }
+            .search-bar { width: 100%; }
         }
          @media (max-width: 576px) {
             .katalog-grid, .inspirasi-grid { grid-template-columns: 1fr; }
@@ -384,7 +361,7 @@
             <nav>
                 <ul>
                     <li><a href="beranda.html">Beranda</a></li>
-                    <li><a href="tentang.html">Tentang</a></li>
+                    <li><a href="tentangkami.html">Tentang</a></li>
                     <li><a href="parfum.html" class="active">Katalog Aroma</a></li> 
                     <li><a href="rekomendasi.html">Rekomendasi</a></li>
                     <li><a href="resepku.html">Resepku</a></li>
@@ -406,6 +383,7 @@
                     <option value="woody">Woody (Kayu)</option>
                     <option value="fresh">Fresh (Segar)</option>
                     <option value="gourmand">Gourmand (Manis)</option>
+                    <option value="oriental">Oriental (Eksotis)</option>
                 </select>
             </div>
             <div class="filter-options">
@@ -420,12 +398,11 @@
     </section>
 
     <main>
-        
         <section id="parfum-katalog" class="container">
             <h2>Aroma Dasar</h2>
             <div class="katalog-grid">
 
-                <div class="parfum-card">
+                <div class="parfum-card" data-name="vanilla sky" data-category="gourmand">
                     <div class="parfum-image"></div>
                     <div class="parfum-info">
                         <h3>Vanilla Sky</h3>
@@ -439,7 +416,7 @@
                     </div>
                 </div>
 
-                <div class="parfum-card">
+                <div class="parfum-card" data-name="rose petal" data-category="floral">
                     <div class="parfum-image"></div>
                     <div class="parfum-info">
                         <h3>Rose Petal</h3>
@@ -453,7 +430,7 @@
                     </div>
                 </div>
 
-                <div class="parfum-card">
+                <div class="parfum-card" data-name="citrus bloom" data-category="fresh">
                     <div class="parfum-image"></div>
                     <div class="parfum-info">
                         <h3>Citrus Bloom</h3>
@@ -467,21 +444,21 @@
                     </div>
                 </div>
 
-                <div class="parfum-card">
+                <div class="parfum-card" data-name="deep sandalwood" data-category="woody">
                     <div class="parfum-image"></div>
                     <div class="parfum-info">
                         <h3>Deep Sandalwood</h3>
                         <p>Hangat, mewah, dan earthy</p>
                         <a href="#" class="btn btn-secondary btn-detail"
                            data-title="Deep Sandalwood" 
-                           data-desc="Aroma kayu cendana yang dalam, hangat, dan mewah. Memberikan fondasi yang kokoh dan karakter 'earthy' pada parfum." 
+                           data-desc="Aroma kayu cendana yang dalam, hangat, dan mewah." 
                            data-details="<p><strong>Notes:</strong> Base Note</p><p><strong>Kategori:</strong> Woody</p><p><strong>Karakter:</strong> Kayu Cendana, Creamy, Hangat</p>">
                            Lihat Detail
                         </a>
                     </div>
                 </div>
                 
-                <div class="parfum-card">
+                <div class="parfum-card" data-name="soft musk" data-category="oriental">
                     <div class="parfum-image"></div>
                     <div class="parfum-info">
                         <h3>Soft Musk</h3>
@@ -495,49 +472,7 @@
                     </div>
                 </div>
 
-                <div class="parfum-card">
-                    <div class="parfum-image"></div>
-                    <div class="parfum-info">
-                        <h3>Jasmine Tea</h3>
-                        <p>Menenangkan, floral, dan hijau</p>
-                        <a href="#" class="btn btn-secondary btn-detail"
-                           data-title="Jasmine Tea" 
-                           data-desc="Kombinasi menenangkan dari melati dan teh hijau. Memberikan nuansa 'zen' yang floral sekaligus hijau." 
-                           data-details="<p><strong>Notes:</strong> Middle Note</p><p><strong>Kategori:</strong> Floral/Green</p><p><strong>Karakter:</strong> Melati, Teh Hijau, Zen</p>">
-                           Lihat Detail
-                        </a>
-                    </div>
-                </div>
-
-                <div class="parfum-card">
-                    <div class="parfum-image"></div>
-                    <div class="parfum-info">
-                        <h3>Amber Glow</h3>
-                        <p>Hangat, sensual, dan resinous</p>
-                        <a href="#" class="btn btn-secondary btn-detail"
-                           data-title="Amber Glow" 
-                           data-desc="Aroma amber yang hangat, sedikit manis, dan sensual. Memberikan kedalaman yang kaya dan nuansa oriental." 
-                           data-details="<p><strong>Notes:</strong> Base Note</p><p><strong>Kategori:</strong> Oriental</p><p><strong>Karakter:</strong> Amber, Hangat, Sedikit Manis</p>">
-                           Lihat Detail
-                        </a>
-                    </div>
-                </div>
-
-                <div class="parfum-card">
-                    <div class="parfum-image"></div>
-                    <div class="parfum-info">
-                        <h3>Fresh Laundry</h3>
-                        <p>Bersih, segar, dan nyaman</p>
-                        <a href="#" class="btn btn-secondary btn-detail"
-                           data-title="Fresh Laundry" 
-                           data-desc="Aroma bersih dari aldehydes dan kapas, seperti pakaian yang baru dicuci. Memberikan kesan yang sangat bersih dan nyaman." 
-                           data-details="<p><strong>Notes:</strong> Top Note</p><p><strong>Kategori:</strong> Fresh</p><p><strong>Karakter:</strong> Aldehydes, Kapas, Bersih</p>">
-                           Lihat Detail
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="parfum-card">
+                <div class="parfum-card" data-name="ocean breeze" data-category="fresh">
                     <div class="parfum-image"></div>
                     <div class="parfum-info">
                         <h3>Ocean Breeze</h3>
@@ -550,48 +485,6 @@
                         </a>
                     </div>
                 </div>
-                
-                <div class="parfum-card">
-                    <div class="parfum-image"></div>
-                    <div class="parfum-info">
-                        <h3>Spicy Bergamot</h3>
-                        <p>Citrus segar dengan sedikit rempah</p>
-                        <a href="#" class="btn btn-secondary btn-detail"
-                           data-title="Spicy Bergamot" 
-                           data-desc="Aroma klasik bergamot yang segar, dipadukan dengan sentuhan lada hitam untuk memberikan kesan 'kick' yang modern." 
-                           data-details="<p><strong>Notes:</strong> Top Note</p><p><strong>Kategori:</strong> Fresh/Spicy</p><p><strong>Karakter:</strong> Citrus, Rempah, Tajam</p>">
-                           Lihat Detail
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="parfum-card">
-                    <div class="parfum-image"></div>
-                    <div class="parfum-info">
-                        <h3>Sweet Caramel</h3>
-                        <p>Manis, legit, dan menggugah selera</p>
-                        <a href="#" class="btn btn-secondary btn-detail"
-                           data-title="Sweet Caramel" 
-                           data-desc="Aroma gourmand yang kaya dan legit. Memberikan nuansa manis yang 'creamy' dan adiktif pada base note." 
-                           data-details="<p><strong>Notes:</strong> Base Note</p><p><strong>Kategori:</strong> Gourmand</p><p><strong>Karakter:</strong> Manis, Legit, 'Toasted'</p>">
-                           Lihat Detail
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="parfum-card">
-                    <div class="parfum-image"></div>
-                    <div class="parfum-info">
-                        <h3>Patchouli Earth</h3>
-                        <p>Earthy, gelap, dan misterius</p>
-                        <a href="#" class="btn btn-secondary btn-detail"
-                           data-title="Patchouli Earth" 
-                           data-desc="Aroma nilam yang dalam, 'earthy', dan sedikit 'smoky'. Memberikan fondasi yang kuat dan karakter misterius." 
-                           data-details="<p><strong>Notes:</strong> Base Note</p><p><strong>Kategori:</strong> Woody/Earthy</p><p><strong>Karakter:</strong> Nilam, Gelap, 'Smoky'</p>">
-                           Lihat Detail
-                        </a>
-                    </div>
-                </div>
 
             </div>
         </section>
@@ -599,90 +492,17 @@
         <section id="inspirasi-section">
             <div class="container">
                 <h2>Inspirasi Layering Populer</h2>
-                
                 <div class="inspirasi-grid">
-                    
                     <div class="creation-card">
                         <div class="image-placeholder"></div>
                         <div class="card-content">
                             <h3>Romantic Date</h3>
                             <p class="composition">60% Rose Petal + 40% Soft Musk</p>
                             <p class="aroma-desc">Aroma mawar yang elegan berpadu dengan musk yang lembut dan sensual.</p>
-                            <a href="#" class="btn btn-primary">Pesan Resep Ini</a>
+                            <a href="#" class="btn btn-primary" onclick="alert('Berhasil ditambahkan ke keranjang! 🛒')">Pesan Resep Ini</a>
                         </div>
                     </div>
-                    
-                    <div class="creation-card">
-                        <div class="image-placeholder"></div>
-                        <div class="card-content">
-                            <h3>Cozy Morning</h3>
-                            <p class="composition">50% Vanilla Sky + 50% Jasmine Tea</p>
-                            <p class="aroma-desc">Kombinasi vanila hangat dan teh melati yang menenangkan, sempurna untuk pagi hari.</p>
-                            <a href="#" class="btn btn-primary">Pesan Resep Ini</a>
-                        </div>
                     </div>
-                    
-                    <div class="creation-card">
-                        <div class="image-placeholder"></div>
-                        <div class="card-content">
-                            <h3>CEO Signature</h3>
-                            <p class="composition">70% Sandalwood + 30% Amber Glow</p>
-                            <p class="aroma-desc">Aroma kayu yang dalam dan amber hangat untuk kesan profesional dan percaya diri.</p>
-                            <a href="#" class="btn btn-primary">Pesan Resep Ini</a>
-                        </div>
-                    </div>
-                    
-                    <div class="creation-card">
-                        <div class="image-placeholder"></div>
-                        <div class="card-content">
-                            <h3>Summer Breeze</h3>
-                            <p class="composition">50% Citrus Bloom + 50% Fresh Laundry</p>
-                            <p class="aroma-desc">Perpaduan aroma citrus ceria dan wangi bersih yang sangat menyegarkan.</p>
-                            <a href="#" class="btn btn-primary">Pesan Resep Ini</a>
-                        </div>
-                    </div>
-
-                    <div class="creation-card">
-                        <div class="image-placeholder"></div>
-                        <div class="card-content">
-                            <h3>Beach Walk</h3>
-                            <p class="composition">50% Ocean Breeze + 30% Citrus Bloom + 20% Soft Musk</p>
-                            <p class="aroma-desc">Perpaduan segar aroma laut, citrus, dan musk bersih. Terasa seperti berjalan di pantai.</p>
-                            <a href="#" class="btn btn-primary">Pesan Resep Ini</a>
-                        </div>
-                    </div>
-
-                    <div class="creation-card">
-                        <div class="image-placeholder"></div>
-                        <div class="card-content">
-                            <h3>Midnight Velvet</h3>
-                            <p class="composition">60% Patchouli Earth + 40% Rose Petal</p>
-                            <p class="aroma-desc">Mawar yang dalam dan misterius, dibalut dengan aroma 'earthy' dari nilam.</p>
-                            <a href="#" class="btn btn-primary">Pesan Resep Ini</a>
-                        </div>
-                    </div>
-
-                    <div class="creation-card">
-                        <div class="image-placeholder"></div>
-                        <div class="card-content">
-                            <h3>Spiced Gourmand</h3>
-                            <p class="composition">50% Vanilla Sky + 30% Sweet Caramel + 20% Spicy Bergamot</p>
-                            <p class="aroma-desc">Manisnya vanila dan karamel, diseimbangkan dengan kesegaran rempah dari bergamot.</p>
-                            <a href="#" class="btn btn-primary">Pesan Resep Ini</a>
-                        </div>
-                    </div>
-
-                    <div class="creation-card">
-                        <div class="image-placeholder"></div>
-                        <div class="card-content">
-                            <h3>Clean & Confident</h3>
-                            <p class="composition">60% Fresh Laundry + 20% Jasmine Tea + 20% Soft Musk</p>
-                            <p class="aroma-desc">Aroma bersih, lembut, dan profesional. Sempurna untuk dipakai ke kantor.</p>
-                            <a href="#" class="btn btn-primary">Pesan Resep Ini</a>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </section>
 
@@ -701,10 +521,15 @@
                 <p><strong>Karakter:</strong> ...</p>
             </div>
             
-            <a href="buatparfum.html" id="modalCta" class="btn btn-primary">Gunakan Aroma Ini</a>
+            <div class="modal-actions-group">
+                <a href="racik.html" id="btnRacik" class="btn btn-secondary">🧪 Racik </a>
+                
+                <button type="button" id="btnCart" class="btn btn-primary">🛒 +Keranjang</button>
+                
+                <button type="button" id="btnBuyNow" class="btn btn-buy btn-buy-now">💳 Beli </button>
+            </div>
         </div>
     </div>
-
 
     <footer>
         <div class="footer-container">
@@ -717,90 +542,132 @@
                     <a href="#" title="Twitter/X">X</a>
                 </div>
             </div>
-            <div class="footer-links">
-                <h4>MixScent</h4>
-                <ul>
-                    <li><a href="tentang.html">Tentang</a></li>
-                    <li><a href="parfum.html">Katalog Aroma</a></li> 
-                    <li><a href="rekomendasi.html">Rekomendasi</a></li>
-                </ul>
             </div>
-            <div class="footer-links">
-                <h4>Bantuan</h4>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Hubungi Kami</a></li>
-                    <li><a href="#">Privasi</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Akun</h4>
-                <ul>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Daftar</a></li>
-                    <li><a href="#">Resepku</a></li>
-                </ul>
-            </div>
-        </div>
         <div class="copyright">
             Copyright © 2025 MixScent. All rights reserved.
         </div>
     </footer>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- 1. LOGIKA MODAL (DIPERBARUI) ---
             const modalOverlay = document.getElementById('detailModal');
             const modalCloseBtn = document.getElementById('modalCloseBtn');
             const detailButtons = document.querySelectorAll('.btn-detail');
 
-            // Elemen konten modal
             const modalTitle = document.getElementById('modalTitle');
             const modalDesc = document.getElementById('modalDesc');
             const modalDetails = document.getElementById('modalDetails');
-            const modalCta = document.getElementById('modalCta');
+            
+            // Tombol-tombol aksi di modal
+            const btnRacik = document.getElementById('btnRacik');
+            const btnCart = document.getElementById('btnCart');
+            const btnBuyNow = document.getElementById('btnBuyNow');
 
-            // Fungsi untuk membuka modal
+            let currentAromaTitle = ""; // Menyimpan nama aroma yang sedang dibuka
+
             const openModal = (e) => {
-                e.preventDefault(); // Mencegah link '#' melompat ke atas
-                
-                // Ambil data dari atribut data-* tombol yang diklik
+                e.preventDefault();
                 const button = e.currentTarget;
                 const title = button.getAttribute('data-title');
                 const desc = button.getAttribute('data-desc');
                 const details = button.getAttribute('data-details');
                 
-                // Masukkan data ke dalam modal
+                currentAromaTitle = title; // Simpan nama aroma
+
                 modalTitle.textContent = title;
                 modalDesc.textContent = desc;
                 modalDetails.innerHTML = details;
                 
-                modalCta.href = `buatparfum.html?aroma=${encodeURIComponent(title)}`;
+                // Update link racik agar membawa nama aroma
+                btnRacik.href = `racik.html?aroma=${encodeURIComponent(title)}`;
                 
                 modalOverlay.style.display = 'flex';
             };
 
-            // Fungsi untuk menutup modal
             const closeModal = () => {
                 modalOverlay.style.display = 'none';
             };
 
-            // Tambahkan event listener ke semua tombol "Lihat Detail"
-            detailButtons.forEach(button => {
-                button.addEventListener('click', openModal);
-            });
+            // Fungsi Tambah ke Keranjang (Simulasi Demo)
+            const addToCartDemo = () => {
+                alert(`"${currentAromaTitle}" berhasil ditambahkan ke keranjang! 🛒`);
+                closeModal();
+                // Di aplikasi nyata: simpan ke localStorage atau database
+            };
 
-            // Tambahkan event listener ke tombol close 'X'
-            modalCloseBtn.addEventListener('click', closeModal);
-
-            // Tambahkan event listener untuk menutup modal saat klik di luar area konten
-            modalOverlay.addEventListener('click', (e) => {
-                if (e.target === modalOverlay) {
-                    closeModal();
+            // Fungsi Beli Langsung (Simulasi Demo)
+            const buyNowDemo = () => {
+                const confirmBuy = confirm(`Lanjut checkout untuk membeli "${currentAromaTitle}" sekarang?`);
+                if (confirmBuy) {
+                    window.location.href = 'checkout.html';
                 }
+            };
+
+            // Pasang Event Listener
+            detailButtons.forEach(button => button.addEventListener('click', openModal));
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) closeModal();
             });
+
+            btnCart.addEventListener('click', addToCartDemo);
+            btnBuyNow.addEventListener('click', buyNowDemo);
+
+
+            // --- 2. LOGIKA FILTER & PENCARIAN ---
+            const searchInput = document.querySelector('.search-bar input');
+            const categorySelect = document.getElementById('kategori');
+            const allCards = document.querySelectorAll('.parfum-card');
+            
+            const noResultMsg = document.createElement('p');
+            noResultMsg.textContent = "Yah, aroma yang kamu cari tidak ditemukan 😔";
+            noResultMsg.style.textAlign = "center";
+            noResultMsg.style.width = "100%";
+            noResultMsg.style.gridColumn = "1 / -1";
+            noResultMsg.style.display = "none";
+            noResultMsg.style.color = "var(--color-text-light)";
+            noResultMsg.style.marginTop = "2rem";
+            document.querySelector('.katalog-grid').appendChild(noResultMsg);
+
+            function filterParfums() {
+                const searchValue = searchInput.value.toLowerCase().trim();
+                const selectedCategory = categorySelect.value.toLowerCase();
+                let visibleCount = 0;
+
+                allCards.forEach(card => {
+                    const cardName = card.getAttribute('data-name');
+                    const cardCategory = card.getAttribute('data-category');
+                    const matchesSearch = cardName.includes(searchValue);
+                    const matchesCategory = selectedCategory === "" || cardCategory === selectedCategory;
+
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = "block";
+                        card.style.animation = "fadeIn 0.5s ease";
+                        visibleCount++;
+                    } else {
+                        card.style.display = "none";
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    noResultMsg.style.display = "block";
+                } else {
+                    noResultMsg.style.display = "none";
+                }
+            }
+
+            searchInput.addEventListener('input', filterParfums);
+            categorySelect.addEventListener('change', filterParfums);
         });
     </script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 
 </body>
 </html>
