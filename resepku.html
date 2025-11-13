@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resepku - Koleksi Parfum MixScent</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 💡 Gaya Desain (Modern Rose Gold - Selaras) --- */
+        
+        :root {
+            /* Palet Warna: Modern Rose Gold (Dari Beranda) */
+            --color-bg-light: #FFFFFF;
+            --color-bg-alt: #FFFBF9;
+            --color-text-dark: #4A4A4A;
+            --color-text-light: #7A7A7A;
+            --color-accent-gold: #D9AAB7;
+            --color-accent-gold-hover: #C48F9E;
+            --color-border: #F5EAEB;
+            --color-footer-bg: #4A4A4A;
+
+            /* Palet Warna Tambahan */
+            --color-status-green: #28a745;
+            --color-status-gray: #888888;
+            --color-danger: #d9534f;
+            --color-danger-bg: #fff0f0;
+
+            /* Tipografi */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --font-ui: 'Montserrat', sans-serif;
+            
+            /* Layout */
+            --border-radius: 8px;
+            --shadow-subtle: 0 5px 20px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* --- Reset Dasar --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; }
+        h1 { font-size: 3.2rem; line-height: 1.2; }
+        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 2.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        p { font-size: 1rem; color: var(--color-text-light); margin-bottom: 1.5rem; }
+        a { text-decoration: none; color: var(--color-accent-gold); transition: color 0.3s ease; }
+        a:hover { color: var(--color-accent-gold-hover); }
+        .container { max-width: 1140px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        /* --- Tombol CTA (Konsisten) --- */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: var(--font-ui);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: var(--color-accent-gold);
+            color: #fff;
+            border-color: var(--color-accent-gold);
+        }
+        .btn-primary:hover {
+            background-color: var(--color-accent-gold-hover);
+            border-color: var(--color-accent-gold-hover);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-accent-gold);
+            border-color: var(--color-accent-gold);
+        }
+        .btn-secondary:hover {
+            background-color: var(--color-accent-gold);
+            color: #fff;
+        }
+        
+        /* --- 1. Header / Navbar (Konsisten) --- */
+        #main-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--color-bg-light);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+        #main-header .logo {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            font-weight: 700;
+        }
+        #main-header nav { display: none; }
+        #main-header nav ul { list-style: none; display: flex; align-items: center; }
+        #main-header nav li { margin: 0 1.25rem; }
+        #main-header nav a {
+            font-family: var(--font-ui);
+            font-weight: 500;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+        #main-header nav a:hover,
+        #main-header nav a.active { 
+            color: var(--color-text-dark); 
+            font-weight: 700;
+        }
+        .nav-cta {
+            margin-left: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        @media (min-width: 769px) {
+            #main-header nav { display: block; }
+        }
+
+        /* --- 🌿 2. Hero Section Resepku --- */
+        #resepku-hero {
+            background-color: var(--color-bg-alt);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        #resepku-hero h1 {
+            max-width: 700px;
+            margin: 0 auto 1.5rem auto;
+            font-family: var(--font-heading);
+        }
+        #resepku-hero p {
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 1rem auto;
+            color: var(--color-text-light);
+        }
+
+        /* --- [BARU] Kartu CTA 'Buat Racikan' --- */
+        .new-recipe-cta {
+            background-color: var(--color-bg-alt);
+            border: 2px dashed var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem; /* Jarak ke galeri di bawah */
+            transition: all 0.3s ease;
+        }
+        .new-recipe-cta:hover {
+            border-color: var(--color-accent-gold);
+            box-shadow: var(--shadow-subtle);
+        }
+        .new-recipe-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-dark);
+        }
+        .new-recipe-cta p {
+            max-width: 500px;
+            margin: 0 auto 1.5rem auto;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem; /* Pastikan ada margin bottom */
+        }
+        /* --- Akhir CSS Baru --- */
+
+
+        /* --- 🌿 3. Konten Galeri Resepku --- */
+        .gallery-title {
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            text-align: center; 
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+        }
+        .recipe-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+            margin-bottom: 3rem;
+        }
+        .recipe-card {
+            background-color: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--color-border);
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .card-body {
+            display: flex;
+            padding: 25px;
+            gap: 20px;
+        }
+        .recipe-visual { flex-shrink: 0; }
+        .visual-bottle {
+            width: 70px;
+            height: 120px;
+            border: 2px solid var(--color-border);
+            border-radius: 15px 15px 5px 5px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column-reverse;
+            background: #fdfdfd;
+        }
+        .layer {
+            width: 100%;
+            transition: height 0.5s ease;
+        }
+        .recipe-content { flex-grow: 1; }
+        .recipe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .recipe-header h3 {
+            margin: 0;
+            font-size: 1.5rem; /* Sesuai h3 */
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+        }
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            font-family: var(--font-ui);
+        }
+        .status-ordered {
+            background-color: #e3f9e7;
+            color: var(--color-status-green);
+        }
+        .status-pending {
+            background-color: #f0f0f0;
+            color: var(--color-status-gray);
+        }
+        .recipe-content .date {
+            font-size: 13px;
+            color: var(--color-text-light);
+            margin-bottom: 15px;
+            font-family: var(--font-ui);
+        }
+        .composition-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+            font-size: 14px;
+        }
+        .composition-list li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 5px;
+            color: var(--color-text-dark);
+            font-family: var(--font-body);
+        }
+        .composition-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-gold); /* Aksen Rose Gold */
+            font-weight: bold;
+        }
+        .aroma-description {
+            font-size: 14px;
+            color: var(--color-text-light);
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* Tombol Aksi Kartu (Disesuaikan) */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px 25px;
+            background-color: var(--color-bg-alt); /* Blush white */
+            border-top: 1px solid var(--color-border);
+        }
+        
+        /* Tombol danger baru */
+        .btn-danger {
+            background-color: transparent;
+            color: var(--color-danger);
+            border-color: var(--color-danger);
+        }
+        .btn-danger:hover {
+            background-color: var(--color-danger);
+            color: #fff;
+            border-color: var(--color-danger);
+        }
+        /* Tombol ikon (padding lebih kecil) */
+        .btn-icon {
+            padding: 0.8rem 1rem;
+        }
+
+        /* --- 🌿 4. Bagian Rekomendasi --- */
+        .recommendations {
+            background-color: var(--color-bg-alt);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin-top: 40px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+        .recommendations h3 {
+            margin-top: 0;
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+        }
+        .recommendations p {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- 🌿 5. Modal Pop-up (Disesuaikan) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none; /* Diubah oleh JS */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .modal-content {
+            background: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .modal-header h2 {
+            margin: 0;
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            font-size: 2rem;
+            text-align: left; /* Reset text-align */
+        }
+        .close-btn {
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .close-btn:hover { color: var(--color-text-dark); }
+        .modal-body .rating {
+            font-size: 20px;
+            color: #f39c12; /* Warna bintang */
+            margin-bottom: 20px;
+        }
+        .modal-body h4 {
+            font-size: 1.1rem;
+            color: var(--color-text-dark);
+            margin-bottom: 10px;
+            font-family: var(--font-ui);
+            font-weight: 600;
+        }
+        .modal-body .personal-note {
+            background: var(--color-bg-alt);
+            border: 1px dashed var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            font-style: italic;
+            color: var(--color-text-light);
+            min-height: 60px;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        /* --- 6. Footer (Konsisten) --- */
+        footer {
+            background-color: var(--color-footer-bg);
+            color: #ccc;
+            padding: 5rem 2rem 2rem 2rem;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2.5rem;
+            max-width: 1140px;
+            margin: 0 auto 3rem auto;
+        }
+        .footer-logo { font-size: 1.8rem; font-family: var(--font-heading); color: #fff; margin-bottom: 1rem; }
+        .footer-about p { color: #999; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .social-icons a { color: #999; font-size: 1.5rem; margin-right: 1.5rem; }
+        .social-icons a:hover { color: var(--color-bg-light); }
+        .footer-links h4 { font-family: var(--font-ui); font-size: 1.1rem; color: #fff; margin-bottom: 1.5rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: #999; font-size: 0.9rem; }
+        .footer-links a:hover { color: #fff; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #333; font-size: 0.9rem; color: #777; max-width: 1140px; margin: 0 auto; }
+        
+        /* --- Penyesuaian Responsif --- */
+        @media (max-width: 992px) {
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.2rem; }
+            .container, #resepku-hero { padding: 3.5rem 1.5rem; }
+            .footer-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="header-container">
+            <a href="beranda.html" class="logo">MixScent</a>
+            <nav>
+                <ul>
+                    <li><a href="beranda.html">Beranda</a></li>
+                    <li><a href="tentangkami.html">Tentang</a></li>
+                    <li><a href="buatparfum.html">Katalog Aroma</a></li>
+                    <li><a href="rekomendasi.html">Rekomendasi</a></li>
+                    <li><a href="resepku.html" class="active">Resepku</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn btn-primary nav-cta">Login/Daftar</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="resepku-hero">
+            <h1>Resepku 🌿</h1>
+            <p>Koleksi parfum personal hasil racikan Anda.</p>
+        </section>
+
+        <section class="container">
+            
+            <div class="new-recipe-cta">
+                <h2>Mulai Racikan Baru?</h2>
+                <p>Klik di sini untuk meracik parfum unik versimu sendiri dari awal.</p>
+                <a href="racik.html" class="btn btn-primary">🧪 Mulai Racik</a>
+            </div>
+
+            <h2 class="gallery-title">Koleksi Saya</h2>
+            
+            <div class="recipe-gallery">
+                
+                <div class="recipe-card">
+                    <div class="card-body">
+                        <div class="recipe-visual">
+                            <div class="visual-bottle">
+                                <div class="layer" style="height: 30%; background-color: #f7cac9;"></div>
+                                <div class="layer" style="height: 30%; background-color: #c5e0dc;"></div>
+                                <div class="layer" style="height: 40%; background-color: #fff2cc;"></div>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-header">
+                                <h3>Warm Hug</h3>
+                                <span class="status-badge status-ordered">Sudah Dipesan</span>
+                            </div>
+                            <p class="date">Dibuat: 28 Oktober 2025</p>
+                            <ul class="composition-list">
+                                <li>40% Vanilla Mist</li>
+                                <li>30% Musk Soul</li>
+                                <li>30% Citrus Bloom</li>
+                            </ul>
+                            <p class="aroma-description">"Aroma: Lembut, manis, dan segar."</p>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-detail">🔍 Lihat Detail</button>
+                        <a href="#" class="btn btn-secondary">🧪 Ubah</a>
+                        <a href="#" class="btn btn-secondary btn-icon" title="Duplikat">❤️</a>
+                        <a href="#" class="btn btn-danger btn-icon" title="Hapus">🗑️</a>
+                    </div>
+                </div>
+
+                <div class="recipe-card">
+                    <div class="card-body">
+                        <div class="recipe-visual">
+                            <div class="visual-bottle">
+                                <div class="layer" style="height: 20%; background-color: #d4a5a5;"></div>
+                                <div class="layer" style="height: 60%; background-color: #c9e2b3;"></div>
+                                <div class="layer" style="height: 20%; background-color: #b3e0e2;"></div>
+                            </div>
+                        </div>
+                        <div class="recipe-content">
+                            <div class="recipe-header">
+                                <h3>Morning Dew</h3>
+                                <span class="status-badge status-pending">Belum Dipesan</span>
+                            </div>
+                            <p class="date">Dibuat: 25 Oktober 2025</p>
+                            <ul class="composition-list">
+                                <li>60% Green Tea Essence</li>
+                                <li>20% Ocean Breeze</li>
+                                <li>20% Rose Petal</li>
+                            </ul>
+                            <p class="aroma-description">"Aroma: Segar, bersih, dan sedikit floral."</p>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-detail">🔍 Lihat Detail</button>
+                        <a href="#" class="btn btn-secondary">🧪 Ubah</a>
+                        <a href="#" class="btn btn-secondary btn-icon" title="Duplikat">❤️</a>
+                        <a href="#" class="btn btn-danger btn-icon" title="Hapus">🗑️</a>
+                    </div>
+                </div>
+                
+            </div> <div class="recommendations">
+                <h3>Rekomendasi Berdasarkan Resepku</h3>
+                <p>🌸 Kamu suka aroma floral lembut seperti "Morning Dew". Coba campur resep tersebut dengan <strong>10% White Musk</strong> untuk hasil yang lebih hangat dan tahan lama.</p>
+            </div>
+
+        </section> 
+    </main>
+    
+    <div id="detailModal" class="modal-overlay">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h2>Detail Resep: Warm Hug</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <div class="rating">Rating Anda: ★★★★☆</div>
+                
+                <h4>Komposisi:</h4>
+                <ul class="composition-list">
+                    <li>40% Vanilla Mist</li>
+                    <li>30% Musk Soul</li>
+                    <li>30% Citrus Bloom</li>
+                </ul>
+                
+                <h4>Catatan Pribadi:</h4>
+                <div class="personal-note">
+                    "Dipakai waktu kerja, tahan lama banget. Aroma vanillanya pas, tidak terlalu menyengat. Dapat pujian dari teman."
+                </div>
+
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-primary">🛒 Pesan Ulang Resep Ini</a>
+                    <a href="#" class="btn btn-secondary">🧪 Ubah Resep</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">MixScent</div>
+                <p>Create Your Own Fragrance. <br> Racik, miliki, dan ekspresikan dirimu.</p>
+                <div class="social-icons">
+                    <a href="#" title="Instagram">I</a> 
+                    <a href="#" title="TikTok">T</a>
+                    <a href="#" title="Twitter/X">X</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>MixScent</h4>
+                <ul>
+                    <li><a href="tentang.html">Tentang</a></li>
+                    <li><a href="#">Buat Parfum</a></li>
+                    <li><a href="rekomendasi.html">Rekomendasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Akun</h4>
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Daftar</a></li>
+                    <li><a href="resepku.html">Resepku</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright © 2025 MixScent. All rights reserved.
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dapatkan elemen-elemen modal
+            const modal = document.getElementById('detailModal');
+            const detailButtons = document.querySelectorAll('.btn-detail');
+            const closeButton = document.querySelector('.close-btn');
+
+            // Fungsi untuk membuka modal
+            function openModal() {
+                // Di aplikasi nyata, Anda akan memuat data resep yang sesuai di sini
+                modal.style.display = 'flex';
+            }
+
+            // Fungsi untuk menutup modal
+            function closeModal() {
+                modal.style.display = 'none';
+            }
+
+            // Tambahkan event listener untuk semua tombol "Liat Detail"
+            detailButtons.forEach(button => {
+                button.addEventListener('click', openModal);
+            });
+
+            // Tambahkan event listener untuk tombol close (X)
+            if (closeButton) {
+                closeButton.addEventListener('click', closeModal);
+            }
+
+            // Tambahkan event listener untuk menutup modal saat klik di luar area konten
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

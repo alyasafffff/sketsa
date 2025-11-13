@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil Pengguna | MixScent</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --color-bg-light: #ffffff;
+        --color-bg-alt: #fffbf9;
+        --color-text-dark: #4a4a4a;
+        --color-text-light: #7a7a7a;
+        --color-accent-gold: #d9aab7;
+        --color-accent-gold-hover: #c48f9e;
+        --border-radius: 10px;
+        --shadow-subtle: 0 5px 20px rgba(0, 0, 0, 0.05);
+        --font-heading: "Playfair Display", serif;
+        --font-body: "Poppins", sans-serif;
+        --font-ui: "Montserrat", sans-serif;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: var(--color-bg-alt);
+        margin: 0;
+        padding: 0;
+        color: var(--color-text-dark);
+      }
+
+      header {
+        background-color: #fff;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      header .logo {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--color-text-dark);
+        text-decoration: none;
+      }
+
+      header a {
+        text-decoration: none;
+        color: var(--color-text-light);
+        font-family: var(--font-ui);
+      }
+
+      .profil-container {
+        max-width: 700px;
+        background: #fff;
+        margin: 4rem auto;
+        padding: 2.5rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-subtle);
+      }
+
+      .profil-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .profil-header img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--color-accent-gold);
+        margin-bottom: 1rem;
+      }
+
+      .profil-header h2 {
+        font-family: var(--font-heading);
+        margin-bottom: 0.3rem;
+      }
+
+      .profil-header p {
+        color: var(--color-text-light);
+        font-size: 0.95rem;
+      }
+
+      .profil-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .profil-info div {
+        background-color: var(--color-bg-alt);
+        padding: 1rem 1.5rem;
+        border-radius: var(--border-radius);
+      }
+
+      .profil-info h4 {
+        font-family: var(--font-ui);
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--color-accent-gold);
+        margin-bottom: 0.5rem;
+      }
+
+      .profil-info p {
+        color: var(--color-text-dark);
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .btn-edit {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 0.8rem 2rem;
+        background-color: var(--color-accent-gold);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-edit:hover {
+        background-color: var(--color-accent-gold-hover);
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem;
+        color: var(--color-text-light);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 600px) {
+        .profil-info {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="beranda.html" class="logo">MixScent</a>
+      <a href="berandaLogin.html">← Kembali</a>
+    </header>
+
+    <main>
+      <div class="profil-container">
+        <div class="profil-header">
+          <img src="alya.jpg" alt="Foto Profil" />
+          <h2>Yaya</h2>
+          <p>Parfum Lover & Creator ✨</p>
+        </div>
+
+        <div class="profil-info">
+          <div>
+            <h4>Email</h4>
+            <p>yaya@example.com</p>
+          </div>
+          <div>
+            <h4>Nomor Telepon</h4>
+            <p>+62 812 3456 7890</p>
+          </div>
+          <div>
+            <h4>Kota</h4>
+            <p>Malang</p>
+          </div>
+          <div>
+            <h4>Jumlah Resep</h4>
+            <p>5 Racikan Parfum</p>
+          </div>
+        </div>
+
+        <div style="text-align: center">
+          <a href="editProfil.html" class="btn-edit">Edit Profil</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>© 2025 MixScent. All Rights Reserved.</footer>
+  </body>
+</html>

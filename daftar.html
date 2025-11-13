@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun – MixScent</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 💡 Gaya Desain (Modern Rose Gold - Selaras) --- */
+        
+        :root {
+            /* Palet Warna */
+            --color-bg-light: #FFFFFF;
+            --color-bg-alt: #FFFBF9;
+            --color-text-dark: #4A4A4A;
+            --color-text-light: #7A7A7A;
+            --color-accent-gold: #D9AAB7;
+            --color-accent-gold-hover: #C48F9E;
+            --color-border: #F5EAEB;
+            --color-footer-bg: #4A4A4A;
+
+            /* Tipografi */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --font-ui: 'Montserrat', sans-serif;
+            
+            /* Layout */
+            --border-radius: 8px;
+            --shadow-subtle: 0 5px 20px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* --- Reset Dasar --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-alt); /* Latar belakang blush white */
+            color: var(--color-text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; }
+        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 2.5rem; }
+        p { font-size: 1rem; color: var(--color-text-light); margin-bottom: 1.5rem; }
+        a { text-decoration: none; color: var(--color-accent-gold); transition: color 0.3s ease; }
+        a:hover { color: var(--color-accent-gold-hover); }
+        .container { max-width: 1140px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        /* --- Tombol CTA (Konsisten) --- */
+        .btn {
+            display: inline-block;
+            width: 100%; /* Tombol form biasanya full-width */
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: var(--font-ui);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: var(--color-accent-gold);
+            color: #fff;
+            border-color: var(--color-accent-gold);
+        }
+        .btn-primary:hover {
+            background-color: var(--color-accent-gold-hover);
+            border-color: var(--color-accent-gold-hover);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* --- 1. [BARU] Header Halaman Auth --- */
+        .auth-header {
+            width: 100%;
+            background-color: var(--color-bg-light);
+            box-shadow: var(--shadow-subtle);
+        }
+        .auth-header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+        .auth-header .logo {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            font-weight: 700;
+        }
+        .auth-header .help-link {
+            font-family: var(--font-ui);
+            font-size: 0.9rem;
+            color: var(--color-accent-gold);
+        }
+
+        /* --- 2. [BARU] Konten Halaman Auth --- */
+        #auth-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1; /* Memenuhi sisa ruang */
+            padding: 4rem 2rem;
+        }
+        .auth-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Kolom kiri & kanan */
+            max-width: 900px;
+            width: 100%;
+            background-color: var(--color-bg-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+        
+        /* Kolom Kiri (Branding) */
+        .auth-branding {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3rem;
+            background-color: var(--color-bg-alt); /* Sedikit beda */
+        }
+        .auth-branding .brand-icon {
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            color: var(--color-accent-gold);
+        }
+        .auth-branding h2 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            line-height: 1.3;
+            color: var(--color-text-dark);
+            margin-bottom: 1rem;
+        }
+        .auth-branding p {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            margin-bottom: 0;
+        }
+
+        /* Kolom Kanan (Formulir) */
+        .auth-form {
+            padding: 3rem;
+        }
+        .auth-form h2 {
+            text-align: left;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-ui);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text-dark);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--color-border);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color-accent-gold);
+        }
+        .btn-full {
+            width: 100%;
+            padding: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Pemisah "ATAU" */
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.8rem;
+            margin: 1.5rem 0;
+        }
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .separator::before { margin-right: 1rem; }
+        .separator::after { margin-left: 1rem; }
+
+        /* Tombol Social Login */
+        .social-login-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-family: var(--font-ui);
+            border: 2px solid var(--color-border);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .btn-social:hover {
+            border-color: var(--color-accent-gold-hover);
+        }
+        .btn-social svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+        }
+
+        /* Link Toggle (Login/Daftar) */
+        .toggle-link {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+        .toggle-link a {
+            font-weight: 600;
+        }
+
+        /* --- 3. Footer (Konsisten) --- */
+        footer {
+            background-color: var(--color-footer-bg);
+            color: #ccc;
+            padding: 5rem 2rem 2rem 2rem;
+            /* Footer tidak menempel, jadi margin-top tidak perlu */
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2.5rem;
+            max-width: 1140px;
+            margin: 0 auto 3rem auto;
+        }
+        .footer-logo { font-size: 1.8rem; font-family: var(--font-heading); color: #fff; margin-bottom: 1rem; }
+        .footer-about p { color: #999; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .social-icons a { color: #999; font-size: 1.5rem; margin-right: 1.5rem; }
+        .social-icons a:hover { color: var(--color-bg-light); }
+        .footer-links h4 { font-family: var(--font-ui); font-size: 1.1rem; color: #fff; margin-bottom: 1.5rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: #999; font-size: 0.9rem; }
+        .footer-links a:hover { color: #fff; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #333; font-size: 0.9rem; color: #777; max-width: 1140px; margin: 0 auto; }
+        
+        /* --- Responsif --- */
+        @media (max-width: 992px) {
+            /* Sembunyikan kolom branding di tablet & mobile */
+            .auth-branding {
+                display: none;
+            }
+            .auth-container {
+                grid-template-columns: 1fr; /* Form jadi 1 kolom penuh */
+                max-width: 450px; /* Batasi lebar form */
+            }
+            .auth-form {
+                padding: 2.5rem;
+            }
+            .auth-form h2 {
+                text-align: center;
+            }
+            .footer-container { 
+                grid-template-columns: 1fr 1fr; 
+            }
+        }
+        @media (max-width: 768px) {
+            .footer-container { grid-template-columns: 1fr; }
+            .auth-form { padding: 2rem 1.5rem; }
+            .social-login-grid { grid-template-columns: 1fr; } /* Stack tombol sosial */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="auth-header">
+        <div class="auth-header-container">
+            <a href="beranda.html" class="logo">MixScent</a>
+            <a href="#" class="help-link">Butuh Bantuan?</a>
+        </div>
+    </header>
+
+    <main id="auth-section">
+        
+        <div class="auth-container">
+            
+            <div class="auth-branding">
+                <div class="brand-icon">🌸</div>
+                <h2>Racik Wangimu.</h2>
+                <p>Ekspresikan dirimu melalui aroma unik yang kamu ciptakan sendiri.</p>
+            </div>
+
+            <div class="auth-form">
+                <h2>Daftar</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="fullname">Nama Lengkap</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Buat password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">Daftar</button>
+                    
+                    <div class="separator">ATAU</div>
+
+                    <div class="social-login-grid">
+                        <button type="button" class="btn-social">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512" fill="#4A4A4A"><path d="M488 261.8C488 403.3 381.4 512 244 512 111.8 512 0 400.2 0 261.8 0 123.8 111.8 12.3 244 12.3c72.3 0 124.3 28.7 162.4 62.4l-67.5 64.8C299.7 112.5 272.5 96.2 244 96.2c-109.2 0-198.6 89.3-198.6 198.6s89.4 198.6 198.6 198.6c120.3 0 178.6-89.8 185-134.6H244v-79.2h236.1c2.3 12.7 3.9 26.4 3.9 40.8z"/></svg>
+                            Google
+                        </button>
+                        <button type="button" class="btn-social">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#4A4A4A"><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H137.4V256H194.2V195.6c0-56.1 33.4-87.2 83.8-87.2c24.6 0 45.5 1.8 51.6 2.6v69.9l-40.8 0c-27.3 0-32.6 13-32.6 32V256h77.4l-10.1 78.2H256V504.5C369.3 476.8 462 376 462 256h50z"/></svg>
+                            Facebook
+                        </button>
+                    </div>
+                    
+                    <div class="toggle-link">
+                        Sudah punya akun? <a href="login.html">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">MixScent</div>
+                <p>Create Your Own Fragrance. <br> Racik, miliki, dan ekspresikan dirimu.</p>
+                <div class="social-icons">
+                    <a href="#" title="Instagram">I</a> 
+                    <a href="#" title="TikTok">T</a>
+                    <a href="#" title="Twitter/X">X</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>MixScent</h4>
+                <ul>
+                    <li><a href="tentangkami.html">Tentang</a></li>
+                    <li><a href="buatparfum.html">Buat Parfum</a></li>
+                    <li><a href="rekomendasi.html">Rekomendasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Akun</h4>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="daftar.html">Daftar</a></li>
+                    <li><a href="resepku.html">Resepku</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright © 2025 MixScent. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

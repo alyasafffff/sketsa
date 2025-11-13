@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekomendasi Parfum – MixScent</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 💡 Gaya Desain (Modern Rose Gold - Selaras dengan Beranda) --- */
+        
+        :root {
+            /* Palet Warna: Modern Rose Gold (Dari Beranda) */
+            --color-bg-light: #FFFFFF;
+            --color-bg-alt: #FFFBF9;
+            --color-text-dark: #4A4A4A;
+            --color-text-light: #7A7A7A;
+            --color-accent-gold: #D9AAB7;
+            --color-accent-gold-hover: #C48F9E;
+            --color-border: #F5EAEB;
+            --color-footer-bg: #4A4A4A;
+            
+            /* 💡 Palet Warna Mood (Disesuaikan agar Selaras) */
+            --mood-ceria: #FAD4C0;
+            --mood-tenang: #D4DEE6;
+            --mood-elegan: #DCD0DE;
+            --mood-semangat: #EBAFB9;
+
+            /* Tipografi */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --font-ui: 'Montserrat', sans-serif;
+            
+            /* Layout */
+            --border-radius: 8px;
+            --shadow-subtle: 0 5px 20px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* --- Reset Dasar --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; }
+        h1 { font-size: 3.2rem; line-height: 1.2; }
+        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 2.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        p { font-size: 1rem; color: var(--color-text-light); margin-bottom: 1.5rem; }
+        a { text-decoration: none; color: var(--color-accent-gold); transition: color 0.3s ease; }
+        a:hover { color: var(--color-accent-gold-hover); }
+        .container { max-width: 1140px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        /* --- Tombol CTA (Konsisten) --- */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: var(--font-ui);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background-color: var(--color-accent-gold);
+            color: #fff;
+            border-color: var(--color-accent-gold);
+        }
+        .btn-primary:hover {
+            background-color: var(--color-accent-gold-hover);
+            border-color: var(--color-accent-gold-hover);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-accent-gold);
+            border-color: var(--color-accent-gold);
+        }
+        .btn-secondary:hover {
+            background-color: var(--color-accent-gold);
+            color: #fff;
+        }
+
+        /* --- 🌸 1. Header / Navbar (Sama Persis) --- */
+        #main-header {
+            position: sticky; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--color-bg-light); 
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s ease;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem; 
+        }
+        #main-header .logo {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            font-weight: 700;
+        }
+        #main-header nav { display: none; } /* Sembunyikan di mobile */
+        #main-header nav ul { list-style: none; display: flex; align-items: center; }
+        #main-header nav li { margin: 0 1.25rem; }
+        #main-header nav a {
+            font-family: var(--font-ui);
+            font-weight: 500;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+        #main-header nav a:hover,
+        #main-header nav a.active { color: var(--color-text-dark); }
+        .nav-cta {
+            margin-left: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        @media (min-width: 769px) {
+            #main-header nav { display: block; }
+        }
+
+        /* --- 💭 2. Hero Section (Pembuka Halaman) --- */
+        #quiz-hero {
+            background-color: var(--color-bg-alt); /* Warna Blush White */
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        #quiz-hero h1 {
+            max-width: 700px;
+            margin: 0 auto 1.5rem auto;
+        }
+        #quiz-hero p {
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        /* --- 🧠 3. Section “Quiz Mood & Personality” --- */
+        #quiz-section {
+            background-color: var(--color-bg-light);
+            padding: 4rem 2rem;
+        }
+        .quiz-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid var(--color-border); /* Garis batas blush */
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+            overflow: hidden; /* Agar progress bar rapi */
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            background-color: var(--color-border);
+        }
+        .progress-bar {
+            width: 0%; /* Diatur oleh JS */
+            height: 8px;
+            background-color: var(--color-accent-gold); /* Warna Rose Gold */
+            transition: width 0.4s ease;
+        }
+        .progress-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            padding: 0.5rem;
+            background: var(--color-bg-alt);
+        }
+
+        #mood-quiz fieldset {
+            border: none;
+            padding: 2.5rem;
+            display: none; /* Diatur oleh JS */
+            animation: fadeIn 0.5s ease;
+        }
+        #mood-quiz fieldset.active {
+            display: block;
+        }
+        #mood-quiz legend {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+        
+        .options-container {
+            display: grid;
+            gap: 1rem;
+        }
+        .options-container label {
+            display: block;
+            padding: 1.25rem 1.5rem;
+            border: 2px solid var(--color-border);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .options-container label:hover {
+            border-color: var(--color-accent-gold-hover);
+        }
+        .options-container input[type="radio"] {
+            opacity: 0;
+            position: absolute;
+        }
+        .options-container label:has(input:checked) {
+            background-color: var(--color-bg-alt);
+            border-color: var(--color-accent-gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .options-container label span {
+            margin-left: 0.5rem;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 2.5rem;
+            background-color: var(--color-bg-alt);
+            border-top: 1px solid var(--color-border);
+        }
+        #prev-btn { display: none; } /* Diatur JS */
+        #submit-btn { display: none; } /* Diatur JS */
+
+        /* --- 🌼 4. Hasil Rekomendasi --- */
+        #result-section {
+            display: none; /* Diatur oleh JS */
+            text-align: center;
+            padding: 5rem 2rem;
+            background: var(--color-bg-light);
+            animation: fadeIn 1s ease;
+        }
+        .result-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        #result-visual {
+            font-size: 5rem;
+            margin: 1rem 0;
+            transition: color 0.5s ease;
+        }
+        #result-notes-list {
+            background: var(--color-bg-alt);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: left;
+            margin: 2rem 0;
+        }
+        #result-notes-list h4 {
+            font-family: var(--font-ui);
+            font-weight: 700;
+            color: var(--color-text-dark);
+            margin-bottom: 1rem;
+        }
+        #result-notes-list p {
+            margin-bottom: 0.5rem;
+        }
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* 💡 Styling Hasil Berdasarkan Mood (Warna Baru) */
+        .result-content.mood-ceria #result-visual { color: var(--mood-ceria); }
+        .result-content.mood-tenang #result-visual { color: var(--mood-tenang); }
+        .result-content.mood-elegan #result-visual { color: var(--mood-elegan); }
+        .result-content.mood-semangat #result-visual { color: var(--mood-semangat); }
+
+        /* --- 💌 5. Section Ajakan (CTA Akhir) --- */
+        #final-cta {
+            background-color: var(--color-bg-alt);
+            text-align: center;
+        }
+        #final-cta h2 {
+            font-size: 2.5rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* --- 🪶 6. Footer (Sama Persis) --- */
+        footer {
+            background-color: var(--color-footer-bg);
+            color: #ccc;
+            padding: 5rem 2rem 2rem 2rem;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2.5rem;
+            max-width: 1140px;
+            margin: 0 auto 3rem auto;
+        }
+        .footer-logo { font-size: 1.8rem; font-family: var(--font-heading); color: #fff; margin-bottom: 1rem; }
+        .footer-about p { color: #999; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .social-icons a { color: #999; font-size: 1.5rem; margin-right: 1.5rem; }
+        .social-icons a:hover { color: var(--color-bg-light); }
+        .footer-links h4 { font-family: var(--font-ui); font-size: 1.1rem; color: #fff; margin-bottom: 1.5rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: #999; font-size: 0.9rem; }
+        .footer-links a:hover { color: #fff; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #333; font-size: 0.9rem; color: #777; max-width: 1140px; margin: 0 auto; }
+        
+        @media (max-width: 992px) {
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.2rem; }
+            .container, #quiz-section { padding: 3.5rem 1.5rem; }
+            .footer-container { grid-template-columns: 1fr; }
+            
+            #main-header nav,
+            .nav-cta {
+                display: none;
+            }
+        }
+
+        /* --- Animasi --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">MixScent</a> 
+            <nav>
+                <ul>
+                    <li><a href="beranda.html">Beranda</a></li>
+                    <li><a href="tentangkami.html">Tentang</a></li>
+                    <li><a href="buatparfum.html">Katalog</a></li>
+                    <li><a href="rekomendasi.html" class="active">Rekomendasi</a></li>
+                    <li><a href="resepku.html">Resepku</a></li>
+                </ul>
+            </nav>
+            <a href="#final-cta" class="btn btn-primary nav-cta">Mulai Racik</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="quiz-hero">
+            <h1>Temukan Parfum yang Sesuai dengan Mood dan Kepribadianmu ✨</h1>
+            <p>Cukup jawab beberapa pertanyaan sederhana, dan kami bantu temukan aroma yang paling menggambarkan dirimu.</p>
+            <a href="#quiz-section" id="hero-quiz-btn" class="btn btn-primary">Mulai Tes Sekarang</a>
+        </section>
+
+        <section id="quiz-section">
+            <div class="quiz-container">
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="progress-text">Pertanyaan 1/9</div>
+                
+                <form id="mood-quiz">
+                    
+                    <fieldset class="quiz-question active" data-question="1">
+                        <legend>Kamu seorang...</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q1" value="pria"><span>Pria</span></label>
+                            <label><input type="radio" name="q1" value="wanita"><span>Wanita</span></label>
+                            <label><input type="radio" name="q1" value="unisex"><span>Tidak masalah / Unisex</span></label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset class="quiz-question" data-question="2">
+                        <legend>Kamu lebih sering beraktivitas di...</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q2" value="indoor"><span>Dalam ruangan (Indoor)</span></label>
+                            <label><input type="radio" name="q2" value="outdoor"><span>Luar ruangan (Outdoor)</span></label>
+                            <label><input type="radio" name="q2" value="keduanya"><span>Keduanya seimbang</span></label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset class="quiz-question" data-question="3">
+                        <legend>Kamu akan memakai parfum ini di suhu...</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q3" value="dingin"><span>Suhu Dingin / Ber-AC (Di bawah 20°C)</span></label>
+                            <label><input type="radio" name="q3" value="panas"><span>Suhu Hangat / Panas (Di atas 20°C)</span></label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="quiz-question" data-question="4">
+                        <legend>Kamu akan menggunakan parfum ini untuk...</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q4" value="kerja/study"><span>Kerja / Study</span></label>
+                            <label><input type="radio" name="q4" value="nongkrong"><span>Nongkrong / Santai</span></label>
+                            <label><input type="radio" name="q4" value="liburan"><span>Liburan</span></label>
+                            <label><input type="radio" name="q4" value="acara_spesial"><span>Acara Spesial / Kencan</span></label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset class="quiz-question" data-question="5">
+                        <legend>🌞 Apa suasana hati yang kamu cari?</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q5" value="ceria"><span>Ceria & Berenergi</span></label>
+                            <label><input type="radio" name="q5" value="tenang"><span>Tenang & Rileks</span></label>
+                            <label><input type="radio" name="q5" value="elegan"><span>Elegan & Profesional</span></label>
+                            <label><input type="radio" name="q5" value="semangat"><span>Penuh Semangat & Berani</span></label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset class="quiz-question" data-question="6">
+                        <legend>🌷 Aroma seperti apa yang paling kamu sukai?</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q6" value="fruity"><span>Aroma Buah Segar (Citrus, Berries)</span></label>
+                            <label><input type="radio" name="q6" value="floral"><span>Bunga Lembut (Mawar, Jasmine)</span></label>
+                            <label><input type="radio" name="q6" value="woody"><span>Kayu & Rempah (Sandalwood, Amber)</span></label>
+                            <label><input type="radio" name="q6" value="sweet"><span>Manis & Hangat (Vanilla, Caramel)</span></label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="quiz-question" data-question="7">
+                        <legend>☕ Pilih minuman favoritmu untuk bersantai:</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q7" value="juice"><span>Jus Buah Segar</span></label>
+                            <label><input type="radio" name="q7" value="tea"><span>Teh Herbal Hangat</span></label>
+                            <label><input type="radio" name="q7" value="wine"><span>Segelas Wine</span></label>
+                            <label><input type="radio" name="q7" value="coffee"><span>Kopi Hitam Pekat</span></label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="quiz-question" data-question="8">
+                        <legend>🏞️ Destinasi liburan impianmu?</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q8" value="beach"><span>Pantai Tropis</span></label>
+                            <label><input type="radio" name="q8" value="mountain"><span>Pegunungan Sunyi</span></label>
+                            <label><input type="radio" name="q8" value="city"><span>Kota Metropolitan</span></label>
+                            <label><input type="radio" name="q8" value="adventure"><span>Petualangan Alam</span></label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="quiz-question" data-question="9">
+                        <legend>💫 Kalau kamu jadi aroma, kamu ingin orang lain merasa...</legend>
+                        <div class="options-container">
+                            <label><input type="radio" name="q9" value="ceria"><span>Bahagia & Segar</span></label>
+                            <label><input type="radio" name="q9" value="tenang"><span>Nyaman & Tenang</span></label>
+                            <label><input type="radio" name="q9" value="elegan"><span>Terkesan & Mewah</span></label>
+                            <label><input type="radio" name="q9" value="semangat"><span>Bersemangat</span></label>
+                        </div>
+                    </fieldset>
+                    
+                    <div class="quiz-navigation">
+                        <button type="button" id="prev-btn" class="btn btn-secondary">Kembali</button>
+                        <button type="button" id="next-btn" class="btn btn-primary">Berikutnya</button>
+                        <button type="submit" id="submit-btn" class="btn btn-primary">Lihat Hasil</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="result-section">
+            <div class="result-content" id="result-content">
+                <div id="result-visual">🧴</div>
+                <h2 id="result-title">Rekomendasi Untukmu: Racikan Tenang & Hangat 🌙</h2>
+                <p id="result-desc">Kamu cocok dengan aroma lavender dan vanilla yang lembut. Kombinasi ini mencerminkan sisi kalem namun elegan dari dirimu.</p>
+                
+                <div id="result-notes-list">
+                    <h4>Rekomendasi Aroma Dasar:</h4>
+                    <p><strong>Top Notes:</strong> Bergamot</p>
+                    <p><strong>Middle Notes:</strong> Lavender</p>
+                    <p><strong>Base Notes:</strong> Vanilla & Musk</p>
+                </div>
+
+                <div class="result-actions">
+                    <a href="keranjang.html" class="btn btn-primary">🛒 Tambah ke Keranjang</a>
+                    <button type="button" id="reset-quiz-btn" class="btn btn-secondary">Ulangi Tes</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="final-cta" class="container">
+            <h2>Atau, Ciptakan Racikanmu Sendiri?</h2>
+            <p style="text-align: center; max-width: 600px; margin: -1rem auto 2rem auto;">Yuk racik parfum versimu sendiri di halaman Layering Builder kami!</p>
+            <a href="buatparfum.html" class="btn btn-primary">Buat Parfum Sekarang</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">MixScent</div>
+                <p>Create Your Own Fragrance. <br> Racik, miliki, dan ekspresikan dirimu.</p>
+                <div class="social-icons">
+                    <a href="#" title="Instagram">I</a> 
+                    <a href="#" title="TikTok">T</a>
+                    <a href="#" title="Twitter/X">X</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>MixScent</h4>
+                <ul>
+                    <li><a href="#">Tentang</a></li>
+                    <li><a href="#">Buat Parfum</a></li>
+                    <li><a href="#">Rekomendasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Akun</h4>
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Daftar</a></li>
+                    <li><a href="#">Resepku</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright © 2025 MixScent. All rights reserved.
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const quiz = document.getElementById('mood-quiz');
+            const questions = document.querySelectorAll('.quiz-question');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            const progressBar = document.querySelector('.progress-bar');
+            const progressText = document.querySelector('.progress-text');
+            
+            const quizSection = document.getElementById('quiz-section');
+            const resultSection = document.getElementById('result-section');
+            const resetBtn = document.getElementById('reset-quiz-btn');
+            const heroBtn = document.getElementById('hero-quiz-btn');
+
+            const resultTitle = document.getElementById('result-title');
+            const resultDesc = document.getElementById('result-desc');
+            const resultNotes = document.getElementById('result-notes-list');
+            const resultContent = document.getElementById('result-content');
+
+            let currentQuestionIndex = 0;
+            const totalQuestions = questions.length; // Otomatis jadi 9
+
+            function showQuestion(index) {
+                questions.forEach(q => q.classList.remove('active'));
+                questions[index].classList.add('active');
+                
+                const progressPercentage = ((index + 1) / totalQuestions) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+                progressText.textContent = `Pertanyaan ${index + 1}/${totalQuestions}`;
+                
+                prevBtn.style.display = (index === 0) ? 'none' : 'inline-block';
+                nextBtn.style.display = (index === totalQuestions - 1) ? 'none' : 'inline-block';
+                submitBtn.style.display = (index === totalQuestions - 1) ? 'inline-block' : 'none';
+            }
+            
+            function showResults(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(quiz);
+                
+                // [DIUBAH] Sekarang kita ambil jawaban dari 'q5' (pertanyaan suasana hati)
+                const moodAnswer = formData.get('q5'); 
+
+                resultContent.className = 'result-content';
+                
+                switch (moodAnswer) {
+                    case 'ceria':
+                        resultTitle.innerHTML = "Rekomendasi Untukmu: Racikan Ceria & Segar ☀️";
+                        resultDesc.textContent = "Kamu cocok dengan aroma citrus dan buah-buahan. Kombinasi ini mencerminkan energimu yang ceria dan menyegarkan.";
+                        resultNotes.innerHTML = `<h4>Rekomendasi Aroma Dasar:</h4>
+                                                 <p><strong>Top Notes:</strong> Bergamot, Peach</p>
+                                                 <p><strong>Middle Notes:</strong> Orange Blossom</p>
+                                                 <p><strong>Base Notes:</strong> White Musk</p>`;
+                        resultContent.classList.add('mood-ceria');
+                        break;
+                    case 'elegan':
+                        resultTitle.innerHTML = "Rekomendasi Untukmu: Racikan Elegan & Berkelas 💎";
+                        resultDesc.textContent = "Kamu cocok dengan aroma mawar, jasmine, dan musk. Kombinasi ini menonjolkan sisi profesional dan kemewahan dirimu.";
+                        resultNotes.innerHTML = `<h4>Rekomendasi Aroma Dasar:</h4>
+                                                 <p><strong>Top Notes:</strong> Peony</p>
+                                                 <p><strong>Middle Notes:</strong> Rose, Jasmine</p>
+                                                 <p><strong>Base Notes:</strong> Patchouli, Musk</p>`;
+                        resultContent.classList.add('mood-elegan');
+                        break;
+                    case 'semangat':
+                        resultTitle.innerHTML = "Rekomendasi Untukmu: Racikan Berani & Penuh Semangat 🔥";
+                        resultDesc.textContent = "Kamu cocok dengan aroma rempah (spice) dan woody. Kombinasi ini menunjukkan sisi petualang dan penuh percaya diri.";
+                        resultNotes.innerHTML = `<h4>Rekomendasi Aroma Dasar:</h4>
+                                                 <p><strong>Top Notes:</strong> Pink Pepper</p>
+                                                 <p><strong>Middle Notes:</strong> Amber, Ginger</p>
+                                                 <p><strong>Base Notes:</strong> Oud, Sandalwood</p>`;
+                        resultContent.classList.add('mood-semangat');
+                        break;
+                    case 'tenang':
+                    default: 
+                        resultTitle.innerHTML = "Rekomendasi Untukmu: Racikan Tenang & Hangat 🌙";
+                        resultDesc.textContent = "Kamu cocok dengan aroma lavender dan vanilla yang lembut. Kombinasi ini mencerminkan sisi kalem namun elegan dari dirimu.";
+                        resultNotes.innerHTML = `<h4>Rekomendasi Aroma Dasar:</h4>
+                                                 <p><strong>Top Notes:</strong> Bergamot</p>
+                                                 <p><strong>Middle Notes:</strong> Lavender</p>
+                                                 <p><strong>Base Notes:</strong> Vanilla, Musk</p>`;
+                        resultContent.classList.add('mood-tenang');
+                        break;
+                }
+                
+                quizSection.style.display = 'none';
+                resultSection.style.display = 'block';
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            function resetQuiz() {
+                currentQuestionIndex = 0;
+                quiz.reset(); 
+                showQuestion(0); 
+                resultSection.style.display = 'none';
+                quizSection.style.display = 'block';
+                quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            nextBtn.addEventListener('click', () => {
+                const currentQuestion = questions[currentQuestionIndex];
+                const inputChecked = currentQuestion.querySelector('input[type="radio"]:checked');
+                
+                if (!inputChecked) {
+                    alert('Harap pilih salah satu opsi.');
+                    return;
+                }
+                
+                if (currentQuestionIndex < totalQuestions - 1) {
+                    currentQuestionIndex++;
+                    showQuestion(currentQuestionIndex);
+                }
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    showQuestion(currentQuestionIndex);
+                }
+            });
+            
+            quiz.addEventListener('submit', showResults);
+            resetBtn.addEventListener('click', resetQuiz);
+
+            heroBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            showQuestion(0);
+        });
+    </script>
+
+</body>
+</html>

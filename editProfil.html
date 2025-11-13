@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Profil | MixScent</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --color-bg-light: #ffffff;
+        --color-bg-alt: #fffbf9;
+        --color-text-dark: #4a4a4a;
+        --color-text-light: #7a7a7a;
+        --color-accent-gold: #d9aab7;
+        --color-accent-gold-hover: #c48f9e;
+        --border-radius: 10px;
+        --shadow-subtle: 0 5px 20px rgba(0, 0, 0, 0.05);
+        --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+        --font-heading: "Playfair Display", serif;
+        --font-body: "Poppins", sans-serif;
+        --font-ui: "Montserrat", sans-serif;
+      }
+
+      /* Reset sederhana */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font-body);
+        background: linear-gradient(180deg, var(--color-bg-alt), #ffffff);
+        color: var(--color-text-dark);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: var(--color-bg-light);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        position: sticky;
+        top: 0;
+        z-index: 30;
+      }
+      .logo { font-family: var(--font-heading); font-size: 1.35rem; color: var(--color-text-dark); text-decoration: none; }
+      .back-link { color: var(--color-text-light); text-decoration: none; font-family: var(--font-ui); }
+
+      main { max-width: 980px; margin: 3.5rem auto; padding: 0 1.5rem; }
+
+      .card {
+        background: var(--color-bg-light);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-subtle);
+        padding: 2rem;
+        overflow: hidden;
+      }
+
+      .page-title {
+        display:flex;
+        align-items:center;
+        gap:1rem;
+        margin-bottom:1.25rem;
+      }
+      .page-title h1 {
+        font-family: var(--font-heading);
+        font-size: 1.6rem;
+        margin: 0;
+      }
+      .page-sub { color: var(--color-text-light); font-size:0.95rem; }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      /* Profil card kiri */
+      .profile-side {
+        text-align: center;
+      }
+      .avatar-wrap {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 1rem auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid var(--color-accent-gold);
+        box-shadow: var(--shadow-subtle);
+        background: linear-gradient(135deg,#f7eef2,#fff6f5);
+      }
+      .avatar-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+
+      .upload-label {
+        display:inline-block;
+        margin-top: 0.8rem;
+        font-family: var(--font-ui);
+        font-weight:500;
+        font-size:0.95rem;
+        color:var(--color-text-dark);
+        text-decoration: none;
+        padding: 0.5rem 0.85rem;
+        border-radius: 999px;
+        border: 1px dashed var(--color-border, #f5eaeb);
+        background: transparent;
+        cursor: pointer;
+      }
+      .upload-note { color: var(--color-text-light); font-size: 0.85rem; margin-top:0.6rem; }
+
+      /* Form kanan */
+      form { }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      label {
+        display:block;
+        font-size:0.85rem;
+        margin-bottom:0.5rem;
+        color:var(--color-text-light);
+        font-weight:600;
+        font-family:var(--font-ui);
+        letter-spacing:0.2px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      textarea,
+      select,
+      input[type="password"] {
+        width:100%;
+        padding: 0.75rem 0.9rem;
+        border-radius: 10px;
+        border: 1px solid #eee;
+        background: #fff;
+        font-size:0.95rem;
+        color: var(--color-text-dark);
+        outline: none;
+        transition: box-shadow .12s ease, transform .12s ease;
+      }
+      input:focus, textarea:focus, select:focus {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-2px);
+        border-color: var(--color-accent-gold);
+      }
+
+      textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+      .full-width { grid-column: 1 / -1; }
+
+      .muted { color: var(--color-text-light); font-size:0.9rem; }
+
+      .actions {
+        margin-top: 1.5rem;
+        display:flex;
+        gap: 0.8rem;
+        justify-content: flex-end;
+        align-items:center;
+      }
+
+      .btn {
+        display:inline-block;
+        padding: 0.65rem 1.25rem;
+        border-radius: 999px;
+        font-weight:600;
+        font-family:var(--font-ui);
+        cursor:pointer;
+        border: 2px solid transparent;
+        letter-spacing: 0.6px;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--color-accent-gold);
+        color: #fff;
+        border-color: var(--color-accent-gold);
+      }
+      .btn-primary:hover { background: var(--color-accent-gold-hover); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+      .btn-ghost {
+        background: transparent;
+        color: var(--color-text-dark);
+        border: 1px solid #eee;
+      }
+      .btn-ghost:hover { background: #fafafa; }
+
+      /* small helpers */
+      .hint { font-size:0.85rem; color:var(--color-text-light); margin-top:0.35rem; }
+
+      @media (max-width: 880px) {
+        .layout { grid-template-columns: 1fr; }
+        .profile-side { order: -1; margin-bottom: 1rem; }
+        .form-grid { grid-template-columns: 1fr; }
+        .actions { justify-content: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="beranda.html">MixScent</a>
+      <a class="back-link" href="user.html">← Kembali ke Profil</a>
+    </header>
+
+    <main>
+      <div class="card" role="region" aria-label="Edit profil">
+        <div class="page-title">
+          <div>
+            <h1>Edit Profil</h1>
+            <div class="page-sub">Perbarui informasi dasar akunmu.</div>
+          </div>
+        </div>
+
+        <div class="layout">
+          <!-- kiri: avatar & info singkat -->
+          <aside class="profile-side" aria-hidden="false">
+            <div class="avatar-wrap" id="avatarWrap">
+              <img id="avatarPreview" src="alya.jpg" alt="Foto Profil" />
+            </div>
+
+            <label class="upload-label" for="avatarInput">Unggah Foto</label>
+            <input id="avatarInput" type="file" accept="image/*" style="display:none" />
+
+            <div class="upload-note">PNG/JPG, max 2MB</div>
+
+            <div style="margin-top:1.6rem; color:var(--color-text-light); font-size:0.95rem;">
+              <div style="font-weight:600; margin-bottom:0.35rem;">Yaya</div>
+              <div class="muted">Parfum Lover &amp; Creator</div>
+            </div>
+          </aside>
+
+          <!-- kanan: form edit -->
+          <section>
+            <form id="editProfileForm" onsubmit="return false;">
+              <div class="form-grid">
+                <div>
+                  <label for="fullName">Nama Lengkap</label>
+                  <input id="fullName" type="text" value="Yaya" />
+                </div>
+
+                <div>
+                  <label for="displayName">Nama Tampilan</label>
+                  <input id="displayName" type="text" value="Yaya" />
+                </div>
+
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" type="email" value="yaya@example.com" />
+                  <div class="hint">Email tidak dapat diubah di tampilan ini.</div>
+                </div>
+
+                <div>
+                  <label for="phone">Nomor Telepon</label>
+                  <input id="phone" type="tel" value="+62 812 3456 7890" />
+                </div>
+
+                <div>
+                  <label for="city">Kota</label>
+                  <input id="city" type="text" value="Malang" />
+                </div>
+
+                <div>
+                  <label for="gender">Jenis Kelamin</label>
+                  <select id="gender">
+                    <option value="">Pilih</option>
+                    <option selected>Perempuan</option>
+                    <option>Laki-laki</option>
+                    <option>Lainnya</option>
+                  </select>
+                </div>
+
+                <div class="full-width">
+                  <label for="bio">Tentang Saya</label>
+                  <textarea id="bio" placeholder="Tulis bio singkat...">Parfum Lover & Creator — suka racik aroma hangat dan manis.</textarea>
+
+                </div>
+
+                <div class="full-width">
+                  <label for="prefs">Preferensi Aroma</label>
+                  <input id="prefs" type="text" value="Vanilla, Citrus, Floral" />
+                  <div class="hint">Pisahkan dengan koma.</div>
+                </div>
+              </div>
+
+              <div class="actions">
+                <a href="user.html" class="btn btn-ghost">Batal</a>
+                <button class="btn btn-primary" id="saveBtn">Simpan Perubahan</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // preview upload sederhana (tampilan saja)
+      const avatarInput = document.getElementById('avatarInput');
+      const avatarPreview = document.getElementById('avatarPreview');
+      const avatarWrap = document.getElementById('avatarWrap');
+
+      // klik label untuk membuka file dialog
+      document.querySelector('.upload-label').addEventListener('click', () => avatarInput.click());
+
+      avatarInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) return alert('Pilih file gambar.');
+
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          avatarPreview.src = evt.target.result;
+        }
+        reader.readAsDataURL(file);
+      });
+
+      // tombol simpan: hanya tampilkan notifikasi visual (tampilan)
+      document.getElementById('saveBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        // efek kecil
+        const btn = e.currentTarget;
+        btn.innerText = 'Tersimpan ✓';
+        setTimeout(() => btn.innerText = 'Simpan Perubahan', 1200);
+      });
+    </script>
+  </body>
+</html>

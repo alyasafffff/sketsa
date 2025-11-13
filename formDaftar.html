@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Profil | MixScent</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --color-bg-light: #ffffff;
+        --color-bg-alt: #fffbf9;
+        --color-text-dark: #4a4a4a;
+        --color-text-light: #7a7a7a;
+        --color-accent-gold: #d9aab7;
+        --color-accent-hover: #c48f9e;
+        --radius: 12px;
+        --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(180deg, var(--color-bg-alt), #fff);
+        color: var(--color-text-dark);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      header {
+        background: var(--color-bg-light);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      header a.logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        text-decoration: none;
+        color: var(--color-text-dark);
+      }
+
+      header a.back {
+        text-decoration: none;
+        color: var(--color-text-light);
+        font-size: 0.9rem;
+      }
+
+      main {
+        max-width: 950px;
+        margin: 3rem auto;
+        padding: 0 1.5rem;
+      }
+
+      .card {
+        background: var(--color-bg-light);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        margin-bottom: 1.3rem;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--color-text-light);
+        margin-bottom: 0.4rem;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        border: 1px solid #eee;
+        border-radius: var(--radius);
+        font-size: 0.95rem;
+        outline: none;
+        background: #fff;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: var(--color-accent-gold);
+        box-shadow: 0 0 0 3px rgba(217, 170, 183, 0.2);
+      }
+
+      .photo-section {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .photo-box {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 0.8rem;
+        border: 3px solid var(--color-accent-gold);
+        box-shadow: var(--shadow);
+      }
+
+      .photo-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .upload-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px dashed var(--color-accent-gold);
+        border-radius: 999px;
+        font-size: 0.9rem;
+        color: var(--color-text-dark);
+        cursor: pointer;
+        background: transparent;
+      }
+
+      .upload-btn:hover {
+        background: #fff4f6;
+      }
+
+      .actions {
+        text-align: right;
+        margin-top: 1.8rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.4rem;
+        border: none;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--color-accent-gold);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--color-accent-hover);
+        transform: translateY(-2px);
+      }
+
+      .btn-cancel {
+        background: transparent;
+        color: var(--color-text-dark);
+        border: 1px solid #ddd;
+        margin-right: 0.5rem;
+      }
+
+      .btn-cancel:hover {
+        background: #f9f9f9;
+      }
+
+      @media (max-width: 780px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .actions {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="beranda.html" class="logo">MixScent</a>
+      <a href="user.html" class="back">← Kembali ke Profil</a>
+    </header>
+
+    <main>
+      <!-- Bagian 1: Info dasar -->
+      <section class="card">
+        <div class="photo-section">
+          <div class="photo-box">
+            <img
+              id="preview"
+              src="https://via.placeholder.com/200x200.png?text=Foto+Profil"
+              alt="Foto Profil"
+            />
+          </div>
+          <label for="upload" class="upload-btn">Unggah Foto</label>
+          <input type="file" id="upload" accept="image/*" style="display: none" />
+        </div>
+
+        <h2>Informasi Dasar</h2>
+        <div class="form-grid">
+          <div>
+            <label>Nama Lengkap</label>
+            <input type="text" value="Yaya Eka Safitri" />
+          </div>
+          <div>
+            <label>Nama Tampilan</label>
+            <input type="text" value="Yaya" />
+          </div>
+          <div>
+            <label>Email</label>
+            <input type="email" value="yaya@example.com" />
+          </div>
+          <div>
+            <label>Kota</label>
+            <input type="text" value="Malang" />
+          </div>
+          <div>
+            <label>Jenis Kelamin</label>
+            <select>
+              <option selected>Perempuan</option>
+              <option>Laki-laki</option>
+              <option>Lainnya</option>
+            </select>
+          </div>
+          <div>
+            <label>Tanggal Lahir</label>
+            <input type="date" value="2003-06-10" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagian 2: Preferensi Parfum -->
+      <section class="card">
+        <h2>Preferensi Parfum</h2>
+        <div class="form-grid">
+          <div>
+            <label>Aroma Favorit</label>
+            <input type="text" value="Vanilla, Floral, Citrus" />
+          </div>
+          <div>
+            <label>Tipe Parfum</label>
+            <select>
+              <option selected>Eau de Parfum</option>
+              <option>Eau de Toilette</option>
+              <option>Body Mist</option>
+              <option>Layered Custom</option>
+            </select>
+          </div>
+          <div class="full">
+            <label>Tentang Saya</label>
+            <textarea rows="4">Parfum lover — suka racik aroma hangat dan manis.</textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-cancel">Batal</button>
+          <button class="btn btn-primary" id="saveBtn">Simpan Perubahan</button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Preview foto profil
+      const upload = document.getElementById("upload");
+      const preview = document.getElementById("preview");
+      upload.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (evt) => (preview.src = evt.target.result);
+        reader.readAsDataURL(file);
+      });
+
+      // Efek tombol simpan
+      document.getElementById("saveBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        e.target.innerText = "Tersimpan ✓";
+        setTimeout(() => (e.target.innerText = "Simpan Perubahan"), 1200);
+      });
+    </script>
+  </body>
+</html>

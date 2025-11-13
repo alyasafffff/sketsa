@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami – MixScent</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 💡 Gaya Desain (Modern Rose Gold - Selaras) --- */
+        
+        :root {
+            /* Palet Warna: Modern Rose Gold (Dari Beranda) */
+            --color-bg-light: #FFFFFF;       /* Putih bersih */
+            --color-bg-alt: #FFFBF9;        /* Blush white / Off-white sangat muda */
+            --color-text-dark: #4A4A4A;     /* Abu-abu gelap */
+            --color-text-light: #7A7A7A;    /* Abu-abu medium */
+            --color-accent-gold: #D9AAB7;   /* Aksen Rose Gold / Dusty Pink */
+            --color-accent-gold-hover: #C48F9E; /* Rose Gold lebih gelap */
+            --color-border: #F5EAEB;        /* Garis batas blush */
+            --color-footer-bg: #4A4A4A;     /* Footer abu-abu gelap */
+
+            /* Tipografi */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --font-ui: 'Montserrat', sans-serif;
+            
+            /* Layout */
+            --border-radius: 8px;
+            --shadow-subtle: 0 5px 20px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* --- Reset Dasar --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; }
+        h1 { font-size: 3.2rem; line-height: 1.2; }
+        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 2.5rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        p { font-size: 1rem; color: var(--color-text-light); margin-bottom: 1.5rem; }
+        a { text-decoration: none; color: var(--color-accent-gold); transition: color 0.3s ease; }
+        a:hover { color: var(--color-accent-gold-hover); }
+        .container { max-width: 1140px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        /* --- Tombol CTA (Konsisten) --- */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: var(--font-ui);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background-color: var(--color-accent-gold);
+            color: #fff;
+            border-color: var(--color-accent-gold);
+        }
+        .btn-primary:hover {
+            background-color: var(--color-accent-gold-hover);
+            border-color: var(--color-accent-gold-hover);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* --- 1. Header / Navbar (Konsisten) --- */
+        #main-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--color-bg-light);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+        #main-header .logo {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            font-weight: 700;
+        }
+        #main-header nav { display: none; } /* Sembunyi di mobile */
+        #main-header nav ul { list-style: none; display: flex; align-items: center; }
+        #main-header nav li { margin: 0 1.25rem; }
+        #main-header nav a {
+            font-family: var(--font-ui);
+            font-weight: 500;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+        #main-header nav a:hover,
+        #main-header nav a.active { color: var(--color-text-dark); }
+        .nav-cta {
+            margin-left: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        @media (min-width: 769px) {
+            #main-header nav { display: block; }
+        }
+
+        /* --- 2. Hero Section (Pembuka Halaman) --- */
+        #about-hero {
+            background-color: var(--color-bg-alt);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        #about-hero h1 {
+            max-width: 700px;
+            margin: 0 auto 1.5rem auto;
+        }
+        #about-hero p {
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 1rem auto;
+            color: var(--color-text-light);
+        }
+
+        /* --- 3. Section “Cerita Kami” --- */
+        #our-story .story-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        #our-story .story-image {
+            height: 400px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-border);
+            /* Placeholder: ganti dengan url gambar */
+            background-image: linear-gradient(135deg, #EADFF2, #FADCD9); 
+        }
+        #our-story h2 {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        /* --- 4. Section “Nilai Kami” --- */
+        #our-values {
+            background-color: var(--color-bg-alt);
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        .value-card {
+            background-color: var(--color-bg-light);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .value-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent-gold);
+        }
+
+        /* --- 5. Section “Tim Kami” --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .team-card {
+            text-align: center;
+        }
+        .team-card .team-photo {
+            height: 320px;
+            border-radius: var(--border-radius);
+            background-color: var(--color-border);
+            margin-bottom: 1.5rem;
+            /* Placeholder: ganti dengan url gambar */
+            background-image: linear-gradient(135deg, #D4DEE6, #DCD0DE);
+        }
+        .team-card p.role {
+            font-family: var(--font-ui);
+            font-weight: 600;
+            color: var(--color-accent-gold);
+            margin-bottom: 0.5rem;
+            margin-top: -1rem;
+        }
+        .team-card blockquote {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--color-text-light);
+            padding: 0 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* --- 6. Section “Visi & Misi” --- */
+        #vision-mission {
+            background-color: var(--color-bg-alt);
+        }
+        .vm-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .vm-container h3 {
+            color: var(--color-accent-gold);
+        }
+        .vm-container ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+        .vm-container li {
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- 7. Section “Hubungi Kami” (CTA) --- */
+        #contact-cta {
+            text-align: center;
+        }
+        #contact-cta h2 {
+            font-size: 2.2rem;
+            max-width: 500px;
+            margin: 0 auto 2rem auto;
+        }
+        .cta-social-icons {
+            margin-top: 2.5rem;
+        }
+        .cta-social-icons a {
+            font-size: 1.8rem;
+            margin: 0 1rem;
+            color: var(--color-text-light);
+            transition: all 0.3s ease;
+        }
+        .cta-social-icons a:hover {
+            color: var(--color-accent-gold);
+        }
+
+        /* --- 8. Footer (Konsisten) --- */
+        footer {
+            background-color: var(--color-footer-bg);
+            color: #ccc;
+            padding: 5rem 2rem 2rem 2rem;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2.5rem;
+            max-width: 1140px;
+            margin: 0 auto 3rem auto;
+        }
+        .footer-logo { font-size: 1.8rem; font-family: var(--font-heading); color: #fff; margin-bottom: 1rem; }
+        .footer-about p { color: #999; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .social-icons a { color: #999; font-size: 1.5rem; margin-right: 1.5rem; }
+        .social-icons a:hover { color: var(--color-bg-light); }
+        .footer-links h4 { font-family: var(--font-ui); font-size: 1.1rem; color: #fff; margin-bottom: 1.5rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: #999; font-size: 0.9rem; }
+        .footer-links a:hover { color: #fff; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #333; font-size: 0.9rem; color: #777; max-width: 1140px; margin: 0 auto; }
+        
+        /* --- Penyesuaian Responsif --- */
+        @media (max-width: 992px) {
+            .values-grid { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.2rem; }
+            .container { padding: 3.5rem 1.5rem; }
+            #our-story .story-container { grid-template-columns: 1fr; }
+            .values-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .vm-container { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="header-container">
+            <a href="beranda.html" class="logo">MixScent</a>
+            <nav>
+                <ul>
+            <li><a href="beranda.html">Beranda</a></li>
+            <li><a href="tentangkami.html"   class="active">Tentang</a></li>
+            <li><a href="buatparfum.html">Katalog Aroma</a></li>
+            <li><a href="rekomendasi.html">Rekomendasi</a></li>
+            <li><a href="resepku.html">Resepku</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn btn-primary nav-cta">Login/Daftar</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="about-hero">
+            <h1>Tentang MixScent 🌸</h1>
+            <p>Kami percaya setiap orang berhak punya aroma khas yang mencerminkan dirinya.</p>
+        </section>
+
+        <section id="our-story" class="container">
+            <div class="story-container">
+                <div class="story-text">
+                    <h2>Cerita Kami</h2>
+                    <p>MixScent lahir dari keinginan untuk menggabungkan kreativitas dan kepribadian ke dalam sebotol parfum. Kami bosan dengan aroma yang 'itu-itu saja' di pasaran.</p>
+                    <p>Kami ingin setiap orang bisa bereksperimen dengan aroma, menjadi 'perfumer' untuk dirinya sendiri, dan menemukan wangi yang benar-benar mewakili jiwanya. Ini bukan sekadar parfum, ini adalah cerita Anda.</p>
+                </div>
+                <div class="story-image">
+                    </div>
+            </div>
+        </section>
+
+        <section id="our-values">
+            <div class="container">
+                <h2>Nilai Kami</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="icon">🌿</div>
+                        <h3>Personalization</h3>
+                        <p>Setiap parfum yang kami racik adalah unik, sama seperti pemiliknya.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="icon">💎</div>
+                        <h3>Quality</h3>
+                        <p>Kami hanya gunakan bahan aroma berkualitas tinggi dan aman untuk kulit.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="icon">💌</div>
+                        <h3>Experience</h3>
+                        <p>Bukan sekadar wangi, tapi sebuah pengalaman emosional yang personal.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="icon">♻️</div>
+                        <h3>Sustainability</h3>
+                        <p>Botol kami dirancang untuk bisa diisi ulang (refill) untuk mengurangi limbah.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="our-team" class="container">
+            <h2>Tim Kami</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-photo"></div>
+                    <h3>Alya Eka</h3>
+                    <p class="role">Founder & Fragrance Designer</p>
+                    <blockquote>“Parfum bukan sekadar aroma, tapi cara bercerita tanpa kata.”</blockquote>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo"></div>
+                    <h3>Dina</h3>
+                    <p class="role">UI/UX & Brand Experience</p>
+                    <blockquote>“Saya ingin proses 'meracik' parfum ini terasa semenyenangkan hasilnya.”</blockquote>
+                </div>
+                <div class="team-card">
+                    <div class="team-photo"></div>
+                    <h3>Rafi</h3>
+                    <p class="role">Perfume Production Lead</p>
+                    <blockquote>“Setiap tetes penting. Presisi adalah kunci untuk aroma yang sempurna.”</blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section id="vision-mission">
+            <div class="container vm-container">
+                <div class="vision-text">
+                    <h3>Visi Kami</h3>
+                    <p>Menjadi platform parfum kustom terdepan yang menginspirasi setiap individu untuk menemukan dan merayakan aroma khasnya.</p>
+                </div>
+                <div class="mission-text">
+                    <h3>Misi Kami</h3>
+                    <ul>
+                        <li>Menghadirkan pengalaman racik parfum yang mudah dan menyenangkan.</li>
+                        <li>Menyediakan bahan aroma berkualitas tinggi dan aman.</li>
+                        <li>Mengedukasi masyarakat tentang seni layering parfum.</li>
+                        <li>Membangun komunitas yang percaya diri dengan keunikannya.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-cta" class="container">
+            <h2>Punya ide atau ingin kolaborasi?</h2>
+            <p style="color: var(--color-text-light);">Kami senang mendengarnya!</p>
+            <a href="#" class="btn btn-primary">Hubungi Kami</a>
+            <div class="cta-social-icons">
+                <a href="#" title="Instagram">I</a> 
+                <a href="#" title="TikTok">T</a>
+                <a href="#" title="Email">E</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">MixScent</div>
+                <p>Create Your Own Fragrance. <br> Racik, miliki, dan ekspresikan dirimu.</p>
+                <div class="social-icons">
+                    <a href="#" title="Instagram">I</a> 
+                    <a href="#" title="TikTok">T</a>
+                    <a href="#" title="Twitter/X">X</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>MixScent</h4>
+                <ul>
+                    <li><a href="tentang.html">Tentang</a></li>
+                    <li><a href="#">Buat Parfum</a></li>
+                    <li><a href="rekomendasi.html">Rekomendasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                    <li><a href="#">Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Akun</h4>
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Daftar</a></li>
+                    <li><a href="#">Resepku</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright © 2025 MixScent. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
